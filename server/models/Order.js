@@ -62,7 +62,34 @@ const orderSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-    }
+    },
+    customerName: {
+        type: String,
+        required: true,
+    },
+    customerEmail: {
+        type: String,
+        required: true,
+        match: /.+\@.+\..+/,
+    },
+    customerPhone: {
+        type: String,
+        required: true,
+    },
+    deliveryAddress: {
+        type: String,
+        required: true,
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'confirmed', 'preparing', 'out_for_delivery', 'delivered', 'cancelled'],
+        default: 'pending',
+    },
+    paymentStatus: {
+        type: String,
+        enum: ['pending', 'paid', 'failed', 'refunded'],
+        default: 'pending',
+    },
 }, { timestamps: true });
 
 const Order = mongoose.model('Order', orderSchema);

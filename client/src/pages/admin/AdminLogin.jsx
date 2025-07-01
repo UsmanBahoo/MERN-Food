@@ -1,22 +1,46 @@
-import React, { useState } from 'react';
-import { Link,} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import useAdminAuth from '../../contexts/AdminAuth/UseAdminAuth';
 
 function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  const { adminLogin, isAdminLoggedIn } = useAdminAuth();
+  const navigate = useNavigate();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (isAdminLoggedIn) {
+      navigate('/admin/dashboard');
+    }
+  }, [isAdminLoggedIn, navigate]);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (email && password) {
-      console.log('Email:', email);
-      console.log('Password:', password);
-      setEmail('');
-      setPassword('');
+      setLoading(true);
+      try {
+        const result = await adminLogin(email, password);
+        
+        if (result.success) {
+          alert('Login successful!');
+          navigate('/admin/dashboard');
+        } else {
+          alert(result.message || 'Login failed');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('An error occurred during login');
+      } finally {
+        setLoading(false);
+      }
     } else {
       alert('Please fill in both fields.');
     }
@@ -79,20 +103,19 @@ function AdminLogin() {
               </div>
 
               <div className="my-6">
-                <Link to="/AdminDashboard">
                 <button
                   type="submit"
-                  className="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none"
+                  disabled={loading}
+                  className="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Login
+                  {loading ? 'Logging in...' : 'Login'}
                 </button>
-                </Link> 
               </div>
 
               <p className="text-center text-sm text-gray-500">
                 Don&#39;t have an account yet?{' '}
                 <Link
-                  to="/admin/signup"
+                  to="/admin/register"
                   className="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
                 >
                  Sign up

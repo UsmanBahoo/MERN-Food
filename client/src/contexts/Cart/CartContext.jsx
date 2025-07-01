@@ -60,7 +60,6 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     try {
       const storedCart = localStorage.getItem("cart");
-      console.log("Loading cart from localStorage:", storedCart);
       if (storedCart) {
         setCart(JSON.parse(storedCart));
       }
