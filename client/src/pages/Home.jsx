@@ -21,7 +21,7 @@ const Home = () => {
     },
     {
       id: 2,
-      img: "Image/home-img-2.png",
+      img: "/Image/home-img-2.png",
       heading: "Online Order",
       element: "Cheesy Hamburger",
       paragraph:
