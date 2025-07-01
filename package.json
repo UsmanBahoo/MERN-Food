@@ -1,0 +1,22 @@
+{
+  "name": "mern-food-app",
+  "version": "1.0.0",
+  "description": "MERN Food Delivery App",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "cd server && npm start",
+    "server": "cd server && npm run test",
+    "client": "cd client && npm run dev",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install-all": "npm run install-server && npm run install-client",
+    "heroku-postbuild": "cd client && npm install && npm run build && cd ../server && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": ["mern", "food", "delivery", "restaurant"],
+  "author": "",
+  "license": "ISC"
+}
