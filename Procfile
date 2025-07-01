@@ -1,2 +1,2 @@
 web: npm start
-release: npm run admin
+release: npm run test
