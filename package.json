@@ -7,6 +7,7 @@
     "start": "cd server && npm start",
     "server": "cd server && npm run test",
     "install-server": "cd server && npm install",
+    "admin": "cd server && npm run admin",
     "heroku-postbuild": "cd server && npm install"
   },
   "engines": {

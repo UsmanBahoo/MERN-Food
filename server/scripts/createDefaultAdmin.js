@@ -41,11 +41,16 @@ const createDefaultAdmin = async () => {
 
     } catch (error) {
         console.error('Error creating default admin:', error);
+        process.exit(1);
     } finally {
         await mongoose.disconnect();
         console.log('Disconnected from MongoDB');
+        process.exit(0);
     }
 };
 
+// Execute the function
+createDefaultAdmin();
 
-export default createDefaultAdmin;
+// Don't export anything since this is a standalone script
+// export default createDefaultAdmin;
