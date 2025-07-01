@@ -12,7 +12,7 @@ const Home = () => {
   const banners = [
     {
       id: 1,
-      img: "src/Image/home-img-1.png",
+      img: "Image/home-img-1.png",
       heading: "Online Order",
       element: "Delicious Food",
       paragraph:
@@ -21,7 +21,7 @@ const Home = () => {
     },
     {
       id: 2,
-      img: "src/Image/home-img-2.png",
+      img: "Image/home-img-2.png",
       heading: "Online Order",
       element: "Cheesy Hamburger",
       paragraph:
@@ -30,7 +30,7 @@ const Home = () => {
     },
     {
       id: 3,
-      img: "src/Image/home-img-3.png",
+      img: "Image/home-img-3.png",
       heading: "Online Order",
       element: "Roasted Chicken",
       paragraph:
@@ -40,12 +40,12 @@ const Home = () => {
   ];
 
   const dishes = [
-    { id: 1, name: "Zinger Burger", price: 550, image: "src/Image/a.png", cartPath: "/cart" },
-    { id: 2, name: "Krunch Burger", price: 350, image: "src/Image/bg.png", cartPath: "/cart2" },
-    { id: 3, name: "Krunch Chicken Combo", price: 520, image: "src/Image/z1.png", cartPath: "/cart3" },
-    { id: 4, name: "Veggie Pizza", price: 1500, image: "src/Image/p1.png", cartPath: "/cart4" },
-    { id: 5, name: "Pizza Chicken Tikka", price: 2500, image: "src/Image/p2.png", cartPath: "/cart5" },
-    { id: 6, name: "Creamy Chicken Delight", price: 3000, image: "src/Image/p3.png", cartPath: "/cart6" },
+    { id: 1, name: "Zinger Burger", price: 550, image: "Image/a.png", cartPath: "/cart" },
+    { id: 2, name: "Krunch Burger", price: 350, image: "Image/bg.png", cartPath: "/cart2" },
+    { id: 3, name: "Krunch Chicken Combo", price: 520, image: "Image/z1.png", cartPath: "/cart3" },
+    { id: 4, name: "Veggie Pizza", price: 1500, image: "Image/p1.png", cartPath: "/cart4" },
+    { id: 5, name: "Pizza Chicken Tikka", price: 2500, image: "Image/p2.png", cartPath: "/cart5" },
+    { id: 6, name: "Creamy Chicken Delight", price: 3000, image: "Image/p3.png", cartPath: "/cart6" },
   ];
 
   const handleAddToCart = (dish) => {
@@ -112,7 +112,7 @@ const Home = () => {
               <div className="mb-2 w-32 aspect-square flex items-center justify-center">
                 <img
                   className="max-w-full max-h-full object-contain"
-                  src="src/Image/cat-1.png"
+                  src="Image/cat-1.png"
                   alt="Pizza"
                 />
               </div>
@@ -127,7 +127,7 @@ const Home = () => {
               <div className="mb-2 w-32 aspect-square flex items-center justify-center">
                 <img
                   className="max-w-full max-h-full object-contain"
-                  src="src/Image/cat-2.png"
+                  src="Image/cat-2.png"
                   alt="Burger"
                 />
               </div>
@@ -142,7 +142,7 @@ const Home = () => {
               <div className="mb-2 w-32 aspect-square flex items-center justify-center">
                 <img
                   className="max-w-full max-h-full object-contain"
-                  src="src/Image/cat-3.png"
+                  src="Image/cat-3.png"
                   alt="Drink"
                 />
               </div>
@@ -157,7 +157,7 @@ const Home = () => {
               <div className="mb-2 w-32 aspect-square flex items-center justify-center">
                 <img
                   className="max-w-full max-h-full object-contain"
-                  src="src/Image/cat-4.png"
+                  src="Image/cat-4.png"
                   alt="Desserts"
                 />
               </div>
