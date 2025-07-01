@@ -26,7 +26,7 @@ import Address from './pages/Address';
 import NotFound from './pages/NotFound';
 
 // Admin Pages
-import Dashboard from './pages/admin/dashboard';
+import Dashboard from './pages/admin/Dashboard';
 import Products from './pages/admin/Products';
 import UpdateProduct from './pages/admin/UpdateProduct';
 import AdminLogin from './pages/admin/AdminLogin';
