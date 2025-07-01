@@ -55,6 +55,10 @@ app.use('/api', orderRouter);
 app.use('/api', adminRouter);
 app.use('/api/admin', adminAuthRouter);
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the MERN Food App API');
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
