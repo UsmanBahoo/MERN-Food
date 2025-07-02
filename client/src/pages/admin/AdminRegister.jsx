@@ -80,7 +80,7 @@ function AdminRegister() {
                   name="name"
                   id="name"
                   placeholder="Full Name"
-                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  className="peer mt-1 w-full border-0 border-b-2 border-b-gray-300 px-0 py-1 placeholder:text-transparent focus:border-0 focus:border-b-2 focus:border-b-gray-500 focus:outline-none focus:ring-0"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -96,7 +96,7 @@ function AdminRegister() {
                   name="email"
                   id="email"
                   placeholder="Email Address"
-                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  className="peer mt-1 w-full border-0 border-b-2 border-b-gray-300 px-0 py-1 placeholder:text-transparent focus:border-0 focus:border-b-2 focus:border-b-gray-500 focus:outline-none focus:ring-0"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -112,7 +112,7 @@ function AdminRegister() {
                   name="phone"
                   id="phone"
                   placeholder="Phone Number"
-                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  className="peer mt-1 w-full border-0 border-b-2 border-b-gray-300 px-0 py-1 placeholder:text-transparent focus:border-0 focus:border-b-2 focus:border-b-gray-500 focus:outline-none focus:ring-0"
                   value={formData.phone}
                   onChange={handleChange}
                 />
@@ -127,7 +127,7 @@ function AdminRegister() {
                   name="password"
                   id="password"
                   placeholder="Password"
-                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  className="peer mt-1 w-full border-0 border-b-2 border-b-gray-300 px-0 py-1 placeholder:text-transparent focus:border-0 focus:border-b-2 focus:border-b-gray-500 focus:outline-none focus:ring-0"
                   value={formData.password}
                   onChange={handleChange}
                   required
@@ -159,7 +159,7 @@ function AdminRegister() {
                   name="confirmPassword"
                   id="confirmPassword"
                   placeholder="Confirm Password"
-                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  className="peer mt-1 w-full border-0 border-b-2 border-b-gray-300 px-0 py-1 placeholder:text-transparent focus:border-0 focus:border-b-2 focus:border-b-gray-500 focus:outline-none focus:ring-0"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
