@@ -31,9 +31,19 @@ const Home = () => {
   }, []);
 
 
-  const handleAddToCart = (dish) => {
-    addItem(dish);
-    console.log(`${dish.name} added to cart!`);
+  const handleAddToCart = (product, quantity = 1) => {
+    try {
+      const item = {
+        ...product,
+        id: product._id,
+        image: `${API_BASE_URL}${product.image}`,
+        quantity: quantity,
+      };
+      addItem(item);
+      alert(`${product.name} (${quantity}) added to cart!`);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
   };
 
   const banners = [
@@ -187,7 +197,7 @@ const Home = () => {
           <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
             LATEST DISHES
           </h1>
-          
+
           {loading ? (
             <div className="flex justify-center items-center py-20">
               <div className="text-xl text-gray-600">Loading latest dishes...</div>
@@ -233,7 +243,7 @@ const Home = () => {
               ))}
             </div>
           )}
-          
+
           <Link to="/menu">
             <button
               type="button"
