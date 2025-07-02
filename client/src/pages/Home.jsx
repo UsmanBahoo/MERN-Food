@@ -4,10 +4,32 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import useCart from "../contexts/Cart/UseCart";
+import { fetchLatestProducts } from "../services/productService";
+import API_BASE_URL from "../config/api";
 
 const Home = () => {
   const { addItem } = useCart();
+  const [dishes, setDishes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadLatestDishes = async () => {
+      try {
+        setLoading(true);
+        // Fetch the latest 6 dishes
+        const latestDishes = await fetchLatestProducts(6);
+        setDishes(latestDishes);
+      } catch (error) {
+        console.error('Error loading latest dishes:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadLatestDishes();
+  }, []);
 
   const banners = [
     {
@@ -37,15 +59,6 @@ const Home = () => {
         "Roasted Chicken is a flavorful and juicy dish made by slow-cooking a whole chicken or chicken pieces in an oven until the skin turns golden brown and crispy. It is typically seasoned with a blend of herbs and spices like garlic, rosemary, thyme, paprika, and black pepper, which infuse the meat with rich, savory flavors. The slow roasting process keeps the chicken tender and moist on the inside while creating a deliciously crispy exterior. Often served with roasted vegetables, mashed potatoes, or a side of gravy, roasted chicken is a classic and comforting meal enjoyed worldwide.",
       buttonText: "See Menu",
     },
-  ];
-
-  const dishes = [
-    { id: 1, name: "Zinger Burger", price: 550, image: "Image/a.png", cartPath: "/cart" },
-    { id: 2, name: "Krunch Burger", price: 350, image: "Image/bg.png", cartPath: "/cart2" },
-    { id: 3, name: "Krunch Chicken Combo", price: 520, image: "Image/z1.png", cartPath: "/cart3" },
-    { id: 4, name: "Veggie Pizza", price: 1500, image: "Image/p1.png", cartPath: "/cart4" },
-    { id: 5, name: "Pizza Chicken Tikka", price: 2500, image: "Image/p2.png", cartPath: "/cart5" },
-    { id: 6, name: "Creamy Chicken Delight", price: 3000, image: "Image/p3.png", cartPath: "/cart6" },
   ];
 
   const handleAddToCart = (dish) => {
@@ -175,88 +188,59 @@ const Home = () => {
           <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
             LATEST DISHES
           </h1>
-          <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-8 auto-cols-fr">
-            {dishes.slice(0, 3).map((dish) => (
-              <div key={dish.id} className="border rounded-lg p-4 bg-white shadow-lg w-80 relative group">
-                <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-white p-2 rounded-full shadow-md">
-                    <Link to={`/quicknow/${dish.id}`}>
-                      <button>
-                        <img src="/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
+          
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="text-xl text-gray-600">Loading latest dishes...</div>
+            </div>
+          ) : dishes.length === 0 ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="text-xl text-gray-600">No dishes available at the moment.</div>
+            </div>
+          ) : (
+            <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-8 auto-cols-fr">
+              {dishes.map((dish) => (
+                <div key={dish._id} className="border rounded-lg p-4 bg-white shadow-lg w-80 relative group">
+                  <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-white p-2 rounded-full shadow-md">
+                      <Link to={`/product/${dish._id}`}>
+                        <button>
+                          <img src="/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
+                        </button>
+                      </Link>
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleAddToCart(dish)}
+                        className="bg-white p-2 rounded-full shadow-md"
+                      >
+                        <img src="/Svg/cart-shopping-solid.svg" alt="Add to Cart" className="w-5 h-5" />
                       </button>
-                    </Link>
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleAddToCart(dish)}
-                      className="bg-white p-2 rounded-full shadow-md"
-                    >
-                      <img src="/Svg/cart-shopping-solid.svg" alt="Add to Cart" className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-                <img src={dish.image} alt={dish.name} className="w-full h-64 object-cover rounded-lg" />
-                <h1 className="mt-6 text-gray-700 text-sm">{dish.id <= 3 ? "Burger" : "Pizza"}</h1>
-                <h3 className="mt-6 text-lg font-semibold">{dish.name}</h3>
-                <div className="mt-6 flex justify-between items-center">
-                  <span className="text-xl font-bold text-gray-900">Rs. {dish.price}</span>
-                  <input
-                    type="number"
-                    className="w-16 p-2 border rounded text-center"
-                    defaultValue="1"
-                    min="1"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Dishes Section */}
-      <section>
-        <div className="container mx-auto my-4 flex flex-col items-center">
-          <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-8 auto-cols-fr">
-            {dishes.slice(3).map((dish) => (
-              <div key={dish.id} className="border rounded-lg p-4 bg-white shadow-lg w-80 relative group">
-                <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-white p-2 rounded-full shadow-md">
-                    <Link to={`/quicknow/${dish.id}`}>
-                      <button>
-                        <img src="/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
-                      </button>
-                    </Link>
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleAddToCart(dish)}
-                      className="bg-white p-2 rounded-full shadow-md"
-                    >
-                      <img src="/Svg/cart-shopping-solid.svg" alt="Add to Cart" className="w-5 h-5" />
-                    </button>
+                  <img src={`${API_BASE_URL}${dish.image}`} alt={dish.name} className="w-full h-64 object-cover rounded-lg" />
+                  <h1 className="mt-6 text-gray-700 text-sm capitalize">{dish.category}</h1>
+                  <h3 className="mt-6 text-lg font-semibold">{dish.name}</h3>
+                  <div className="mt-6 flex justify-between items-center">
+                    <span className="text-xl font-bold text-gray-900">Rs. {dish.price}</span>
+                    <input
+                      type="number"
+                      className="w-16 p-2 border rounded text-center"
+                      defaultValue="1"
+                      min="1"
+                    />
                   </div>
                 </div>
-                <img src={dish.image} alt={dish.name} className="w-full h-64 object-cover rounded-lg" />
-                <h1 className="mt-6 text-gray-700 text-sm">Pizza</h1>
-                <h3 className="mt-6 text-lg font-semibold">{dish.name}</h3>
-                <div className="mt-6 flex justify-between items-center">
-                  <span className="text-xl font-bold text-gray-900">Rs. {dish.price}</span>
-                  <input
-                    type="number"
-                    className="w-16 p-2 border rounded text-center"
-                    defaultValue="1"
-                    min="1"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
+          
           <Link to="/menu">
             <button
               type="button"
               className="mt-20 text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-lg px-8 py-3.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
             >
-              View All
+              View All Menu
             </button>
           </Link>
         </div>
