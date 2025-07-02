@@ -11,18 +11,18 @@ const Menu = () => {
   };
 
   const menuItems = [
-    { id: 1, name: "Zinger Burger", category: "Burger", price: 550, image: "src/Image/a.png", quickPath: "/Quicknow" },
-    { id: 2, name: "Krunch Burger", category: "Burger", price: 350, image: "src/Image/bg.png", quickPath: "/Quicknow2" },
-    { id: 3, name: "Krunch Chicken Combo", category: "Burger", price: 520, image: "src/Image/z1.png", quickPath: "/Quicknow3" },
-    { id: 4, name: "Veggie Pizza", category: "Pizza", price: 1500, image: "src/Image/p1.png", quickPath: "/Quicknow4" },
-    { id: 5, name: "Pizza Chicken Tikka", category: "Pizza", price: 2500, image: "src/Image/p2.png", quickPath: "/Quicknow5" },
-    { id: 6, name: "Creamy Chicken Delight", category: "Pizza", price: 3000, image: "src/Image/p3.png", quickPath: "/Quicknow6" },
-    { id: 7, name: "Roasted Strawberry Crumble", category: "Desserts", price: 5000, image: "src/Image/d1.png", quickPath: "/Quicknow7" },
-    { id: 8, name: "Angel Food Cake", category: "Desserts", price: 2000, image: "src/Image/d2.png", quickPath: "/Quicknow8" },
-    { id: 9, name: "Almond and Date Cake", category: "Desserts", price: 1200, image: "src/Image/d3.png", quickPath: "/Quicknow9" },
-    { id: 10, name: "Red Bull", category: "Drink", price: 500, image: "src/Image/a3.png", quickPath: "/Quicknow10" },
-    { id: 11, name: "Coke", category: "Drink", price: 100, image: "src/Image/a1.png", quickPath: "/Quicknow11" },
-    { id: 12, name: "Sprite", category: "Drink", price: 1200, image: "src/Image/a2.png", quickPath: "/Quicknow12" },
+    { id: 1, name: "Zinger Burger", category: "Burger", price: 550, image: "Image/a.png", quickPath: "/Quicknow" },
+    { id: 2, name: "Krunch Burger", category: "Burger", price: 350, image: "Image/bg.png", quickPath: "/Quicknow2" },
+    { id: 3, name: "Krunch Chicken Combo", category: "Burger", price: 520, image: "Image/z1.png", quickPath: "/Quicknow3" },
+    { id: 4, name: "Veggie Pizza", category: "Pizza", price: 1500, image: "Image/p1.png", quickPath: "/Quicknow4" },
+    { id: 5, name: "Pizza Chicken Tikka", category: "Pizza", price: 2500, image: "Image/p2.png", quickPath: "/Quicknow5" },
+    { id: 6, name: "Creamy Chicken Delight", category: "Pizza", price: 3000, image: "Image/p3.png", quickPath: "/Quicknow6" },
+    { id: 7, name: "Roasted Strawberry Crumble", category: "Desserts", price: 5000, image: "Image/d1.png", quickPath: "/Quicknow7" },
+    { id: 8, name: "Angel Food Cake", category: "Desserts", price: 2000, image: "Image/d2.png", quickPath: "/Quicknow8" },
+    { id: 9, name: "Almond and Date Cake", category: "Desserts", price: 1200, image: "Image/d3.png", quickPath: "/Quicknow9" },
+    { id: 10, name: "Red Bull", category: "Drink", price: 500, image: "Image/a3.png", quickPath: "/Quicknow10" },
+    { id: 11, name: "Coke", category: "Drink", price: 100, image: "Image/a1.png", quickPath: "/Quicknow11" },
+    { id: 12, name: "Sprite", category: "Drink", price: 1200, image: "Image/a2.png", quickPath: "/Quicknow12" },
   ];
 
   return (
@@ -54,13 +54,13 @@ const Menu = () => {
                   <div className="bg-white p-2 rounded-full shadow-md">
                     <Link to={item.quickPath}>
                       <button>
-                        <img src="src/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
+                        <img src="Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
                       </button>
                     </Link>
                   </div>
                   <div className="bg-white p-2 rounded-full shadow-md">
                     <button onClick={() => handleAddToCart(item)}>
-                      <img src="src/Svg/cart-shopping-solid.svg" alt="Cart" className="w-5 h-5" />
+                      <img src="Svg/cart-shopping-solid.svg" alt="Cart" className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -90,13 +90,13 @@ const Menu = () => {
                   <div className="bg-white p-2 rounded-full shadow-md">
                     <Link to={item.quickPath}>
                       <button>
-                        <img src="src/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
+                        <img src="Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
                       </button>
                     </Link>
                   </div>
                   <div className="bg-white p-2 rounded-full shadow-md">
                     <button onClick={() => handleAddToCart(item)}>
-                      <img src="src/Svg/cart-shopping-solid.svg" alt="Cart" className="w-5 h-5" />
+                      <img src="Svg/cart-shopping-solid.svg" alt="Cart" className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -126,13 +126,13 @@ const Menu = () => {
                   <div className="bg-white p-2 rounded-full shadow-md">
                     <Link to={item.quickPath}>
                       <button>
-                        <img src="src/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
+                        <img src="Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
                       </button>
                     </Link>
                   </div>
                   <div className="bg-white p-2 rounded-full shadow-md">
                     <button onClick={() => handleAddToCart(item)}>
-                      <img src="src/Svg/cart-shopping-solid.svg" alt="Cart" className="w-5 h-5" />
+                      <img src="Svg/cart-shopping-solid.svg" alt="Cart" className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -162,13 +162,13 @@ const Menu = () => {
                   <div className="bg-white p-2 rounded-full shadow-md">
                     <Link to={item.quickPath}>
                       <button>
-                        <img src="src/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
+                        <img src="Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
                       </button>
                     </Link>
                   </div>
                   <div className="bg-white p-2 rounded-full shadow-md">
                     <button onClick={() => handleAddToCart(item)}>
-                      <img src="src/Svg/cart-shopping-solid.svg" alt="Cart" className="w-5 h-5" />
+                      <img src="Svg/cart-shopping-solid.svg" alt="Cart" className="w-5 h-5" />
                     </button>
                   </div>
                 </div>

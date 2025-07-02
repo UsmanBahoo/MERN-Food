@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom'
 
 const About = () => {  
   const cards = [
-    { id: 1, img: "src/Image/pic-1.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM" },
-    { id: 2, img: "src/Image/pic-2.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
-    { id: 3, img: "src/Image/pic-3.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM" },
-    { id: 4, img: "src/Image/pic-4.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
-    { id: 5, img: "src/Image/pic-5.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
-    { id: 6, img: "src/Image/pic-6.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
+    { id: 1, img: "Image/pic-1.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM" },
+    { id: 2, img: "Image/pic-2.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
+    { id: 3, img: "Image/pic-3.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM" },
+    { id: 4, img: "Image/pic-4.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
+    { id: 5, img: "Image/pic-5.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
+    { id: 6, img: "Image/pic-6.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
   ];
   return (  
     <div>
@@ -30,7 +30,7 @@ const About = () => {
        <div className="container mx-auto px-8 py-8">
           <div className="flex justify-between items-center flex-col md:flex-row">
               <div className="mt-2">
-                <img src="src\Svg\about-img.svg" className="h-[600px] w-[600px]" alt="image-description" />
+                <img src="Svg\about-img.svg" className="h-[600px] w-[600px]" alt="image-description" />
               </div>
               <div className="">
                 <h1 className="mt-2 text-4xl font-semibold text-center">why choose us?</h1>
@@ -52,7 +52,7 @@ const About = () => {
             <div className="flex justify-center items-center flex-col md:flex-row gap-5">
               <div className="bg-white boder boder-black-200 rounded-lg p-8 shadow-lg">
                 <div className="flex justify-center items-center">
-                  <img src="src\Image\step-1.png" className="h-[100px] w-[100px]" alt="" />
+                  <img src="Image\step-1.png" className="h-[100px] w-[100px]" alt="" />
                 </div>
                 <h1 className="mt-5 text-center text-xl font-bold">Choose Order</h1>
                 <p className="mt-5 text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] text-center md:text-left">
@@ -62,7 +62,7 @@ const About = () => {
               </div>
               <div className="bg-white boder boder-black-200 rounded-lg p-8 shadow-lg">
                 <div className="flex justify-center items-center">
-                  <img src="src\Image\step-2.png" className="h-[100px] w-[100px]" alt="" />
+                  <img src="Image\step-2.png" className="h-[100px] w-[100px]" alt="" />
                 </div>
                 <h1 className="mt-5 text-center text-xl font-bold">Fast Delivery</h1>
                 <p className="mt-5 text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] text-center md:text-left">
@@ -71,7 +71,7 @@ const About = () => {
               </div>
               <div className="bg-white boder-1  boder-black rounded-lg p-8 shadow-lg">
                 <div className="flex justify-center items-center">
-                  <img src="src\Image\step-3.png" className="h-[100px] w-[100px]" alt="" />
+                  <img src="Image\step-3.png" className="h-[100px] w-[100px]" alt="" />
                 </div>
                 <h1 className="mt-5 text-center text-xl font-bold">Enjoy Food</h1>
                 <p className="mt-5 text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed max-w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] text-center md:text-left">

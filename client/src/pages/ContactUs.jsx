@@ -92,7 +92,7 @@ const ContactUs = () => {
         <div className="container mx-auto px-8 py-8">
           <div className="flex justify-between items-center flex-col md:flex-row">
             <div className="w-full mt-2">
-              <img src="src\Svg\contact-img.svg" className="h-[600px] w-[600px]" alt="image-description" />
+              <img src="Svg\contact-img.svg" className="h-[600px] w-[600px]" alt="image-description" />
             </div>
             <div className="container mx-auto px-4 w-full">
               <form 

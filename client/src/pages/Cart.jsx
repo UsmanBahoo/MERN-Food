@@ -59,7 +59,7 @@ const Cart = () => {
                   className="bg-white p-2 rounded-full shadow-md"
                   onClick={() => handleRemoveFromCart(item.id)}
                 >
-                  <img src="src/Svg/x-solid.svg" alt="Remove from cart" className="w-5 h-5" />
+                  <img src="Svg/x-solid.svg" alt="Remove from cart" className="w-5 h-5" />
                 </button>
               </div>
               <img src={item.image} alt={item.name} className="w-full h-48 object-cover rounded-lg" />
