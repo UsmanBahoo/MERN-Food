@@ -76,7 +76,7 @@ function AdminLogin() {
                   name="password"
                   id="password"
                   placeholder="Password"
-                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent"
                   value={password}
                   onChange={handlePassword}
                 />
@@ -106,7 +106,7 @@ function AdminLogin() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full rounded-md bg-black px-3 py-4 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? 'Logging in...' : 'Login'}
                 </button>
