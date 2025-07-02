@@ -2,10 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import useCart from "../contexts/Cart/UseCart";
 
 const Cart = () => {
-  const { cart, removeItem, updateQuantity, clearCart, getTotalItems, getTotalPrice } = useCart();
+  const { cart, removeItem, updateQuantity, clearCart, getTotalPrice } = useCart();
   const navigate = useNavigate();
 
-  const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
 
   // Handle quantity change and persist to global cart
