@@ -48,20 +48,20 @@ const Cart = () => {
               key={item.id}
               className="border rounded-lg p-4 bg-white shadow-lg w-80 relative group"
             >
-              <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 ">
                 <Link to={`/quicknow/${item.id}`}>
-                  <button className="bg-white p-2 rounded-full shadow-md">
-                    <img src="src/Svg/eye-solid.svg" alt="View item details" className="w-5 h-5" />
+                  <button className="bg-white p-3 rounded-full shadow-md cursor-pointer">
+                    <img src="Svg/eye-solid.svg" alt="View item details" className="w-5 h-5" />
                   </button>
                 </Link>
                 <button
-                  className="bg-white p-2 rounded-full shadow-md"
+                  className="bg-white p-3 rounded-full shadow-md cursor-pointer"
                   onClick={() => handleRemoveFromCart(item.id)}
                 >
                   <img src="Svg/x-solid.svg" alt="Remove from cart" className="w-5 h-5" />
                 </button>
               </div>
-              <img src={item.image} alt={item.name} className="w-full h-48 object-cover rounded-lg" />
+              <img src={item.image} alt={item.name} className="w-full h-auto object-cover rounded-lg " />
               <h1 className="mt-6 text-gray-700 text-sm">{item.id <= 3 ? "Burger" : "Pizza"}</h1>
               <h3 className="mt-2 text-lg font-semibold">{item.name}</h3>
               <div className="mt-4 flex justify-between items-center">

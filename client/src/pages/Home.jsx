@@ -227,7 +227,7 @@ const Home = () => {
                       </button>
                     </div>
                   </div>
-                  <img src={`${API_BASE_URL}${dish.image}`} alt={dish.name} className="w-full h-64 object-cover rounded-lg" />
+                  <img src={`${API_BASE_URL}${dish.image}`} alt={dish.name} className="w-full h-auto object-cover rounded-lg" />
                   <h1 className="mt-6 text-gray-700 text-sm capitalize">{dish.category}</h1>
                   <h3 className="mt-6 text-lg font-semibold">{dish.name}</h3>
                   <div className="mt-6 flex justify-between items-center">
