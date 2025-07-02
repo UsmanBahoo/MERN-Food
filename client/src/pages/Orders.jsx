@@ -1,16 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../contexts/Auth/UseAuth"; // Importing the custom hook to access authentication context
+import useAuth from "../contexts/Auth/UseAuth";
+import API_BASE_URL from "../config/api";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  const { isLoggedIn, user } = useAuth(); // Get login status from authentication context
+  const { isLoggedIn, user } = useAuth();
 
   // Mock fetching orders
   useEffect(() => {
-    if (isLoggedIn) {
-      axios.get(`http://localhost:5000/api/order/${user._id}`) // Fetch orders for the logged-in user
+    if (isLoggedIn && user?._id) {
+      axios.get(`${API_BASE_URL}/api/orders/user/${user._id}`) // Fetch orders for the logged-in user
         .then((response) => {
           console.log("Orders fetched successfully:", response.data);
           setOrders(response.data); // Assuming the response contains an array of orders
@@ -20,7 +21,7 @@ const Orders = () => {
           console.error("Error fetching orders:", error);
         });
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, user]);
 
   return (
     <div>

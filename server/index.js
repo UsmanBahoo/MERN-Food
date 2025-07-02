@@ -53,9 +53,10 @@ app.use('/api', userRouter);
 app.use('/api', authRouter);
 app.use('/api', feedbackRouter);
 app.use('/api', orderRouter);
-app.use('/api', adminRouter);
+app.use('/api/admin', adminRouter);
 app.use('/api/admin', adminAuthRouter);
 app.use('/api', productRouter);
+
 
 app.get('/', (req, res) => {
   res.send('Welcome to the MERN Food App API');
