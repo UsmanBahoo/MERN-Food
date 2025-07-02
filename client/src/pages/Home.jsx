@@ -212,7 +212,7 @@ const Home = () => {
                 <div key={dish._id} className="border rounded-lg p-4 bg-white shadow-lg relative group">
                   <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-white p-2 rounded-full shadow-md">
-                      <Link to={`/product/${dish._id}`}>
+                      <Link to={`/quick/${dish._id}`}>
                         <button>
                           <img src="/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
                         </button>
