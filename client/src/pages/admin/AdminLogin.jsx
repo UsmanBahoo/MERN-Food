@@ -61,9 +61,10 @@ function AdminLogin() {
                   name="email"
                   id="email"
                   placeholder="Email Address"
-                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  className="peer mt-1 w-full border-0 border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-b-2 focus:border-gray-500 focus:outline-none focus:ring-0 active:border-b-2 active:border-gray-500"
                   value={email}
                   onChange={handleEmail}
+                  style={{ borderTop: 'none', borderLeft: 'none', borderRight: 'none', boxShadow: 'none' }}
                 />
                 <label className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800">
                   Email Address
@@ -76,9 +77,10 @@ function AdminLogin() {
                   name="password"
                   id="password"
                   placeholder="Password"
-                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent"
+                  className="peer mt-1 w-full border-0 border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-b-2 focus:border-gray-500 focus:outline-none focus:ring-0 active:border-b-2 active:border-gray-500"
                   value={password}
                   onChange={handlePassword}
+                  style={{ borderTop: 'none', borderLeft: 'none', borderRight: 'none', boxShadow: 'none' }}
                 />
                 <label className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800">
                   Password
