@@ -39,7 +39,7 @@ const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/admin/products`);
+      const response = await axios.get(`${API_BASE_URL}/api/products`);
       if (response.status === 200) {
         setProducts(response.data.products || []);
       }
@@ -201,7 +201,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Latest Dishes Section */}
+      /* Latest Dishes Section */
       <section className="foodcard">
         <div className="mt-[100px] container mx-auto my-4 flex flex-col items-center">
           <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
@@ -217,9 +217,9 @@ const Home = () => {
               <div className="text-xl text-gray-600">No dishes available at the moment.</div>
             </div>
           ) : (
-            <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-8 auto-cols-fr">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
               {dishes.map((dish) => (
-                <div key={dish._id} className="border rounded-lg p-4 bg-white shadow-lg w-80 relative group">
+                <div key={dish._id} className="border rounded-lg p-4 bg-white shadow-lg relative group">
                   <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-white p-2 rounded-full shadow-md">
                       <Link to={`/product/${dish._id}`}>
@@ -264,8 +264,6 @@ const Home = () => {
           </Link>
         </div>
       </section>
-
-      {/* Products Section */}
       <section className="products py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-8 underline decoration-yellow-400">
