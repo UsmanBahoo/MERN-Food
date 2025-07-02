@@ -5,6 +5,8 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  console.log("CartProvider initialized with cart:", cart);
+
   const addItem = (item) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
@@ -69,12 +71,10 @@ export const CartProvider = ({ children }) => {
     }
   }, []);
 
-  // Save cart to localStorage whenever it changes, but only if it's not empty
+  // Save cart to localStorage whenever it changes
   useEffect(() => {
-    if (cart.length > 0) {
-      console.log("Saving cart to localStorage:", cart);
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
+    console.log("Saving cart to localStorage:", cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   return (
@@ -94,4 +94,3 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
