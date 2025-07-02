@@ -6,7 +6,6 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useCart from "../contexts/Cart/UseCart";
-import axios from "axios";
 import { fetchLatestProducts } from "../services/productService";
 import API_BASE_URL from "../config/api";
 
@@ -14,8 +13,6 @@ const Home = () => {
   const { addItem } = useCart();
   const [dishes, setDishes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-
   useEffect(() => {
     const loadLatestDishes = async () => {
       try {
@@ -33,22 +30,6 @@ const Home = () => {
     loadLatestDishes();
   }, []);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/api/products`);
-      if (response.status === 200) {
-        setProducts(response.data.products || []);
-      }
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleAddToCart = (dish) => {
     addItem(dish);
@@ -201,7 +182,6 @@ const Home = () => {
         </div>
       </section>
 
-      /* Latest Dishes Section */
       <section className="foodcard">
         <div className="mt-[100px] container mx-auto my-4 flex flex-col items-center">
           <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
@@ -262,64 +242,6 @@ const Home = () => {
               View All Menu
             </button>
           </Link>
-        </div>
-      </section>
-      <section className="products py-12">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-8 underline decoration-yellow-400">
-            Featured Products
-          </h2>
-          
-          {loading ? (
-            <div className="flex justify-center items-center min-h-[300px]">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {products.slice(0, 8).map((product) => (
-                <div key={product._id} className="border rounded-lg p-4 bg-white shadow-lg relative group">
-                  <img
-                    src={`${API_BASE_URL}${product.image}`}
-                    alt={product.name}
-                    className="w-full h-48 object-cover rounded-lg"
-                    onError={(e) => {
-                      e.target.src = '/placeholder-image.jpg';
-                    }}
-                  />
-                  <div className="mt-4">
-                    <h3 className="text-lg font-semibold">{product.name}</h3>
-                    <p className="text-gray-600 capitalize">{product.category}</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-xl font-bold text-gray-900">Rs. {product.price}</span>
-                    </div>
-                    <div className="flex gap-2 mt-4">
-                      <button
-                        onClick={() => handleAddToCart(product)}
-                        className="flex-1 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
-                      >
-                        Add to Cart
-                      </button>
-                      <Link
-                        to={`/quick/${product._id}`}
-                        className="flex-1 border border-gray-900 text-gray-900 px-4 py-2 rounded hover:bg-gray-100 transition text-center"
-                      >
-                        Quick View
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-          
-          <div className="text-center mt-8">
-            <Link
-              to="/menu"
-              className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition"
-            >
-              View All Products
-            </Link>
-          </div>
         </div>
       </section>
     </div>
