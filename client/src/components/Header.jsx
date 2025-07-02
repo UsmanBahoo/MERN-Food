@@ -26,18 +26,18 @@ const Header = () => {
         <nav className="mt-2 bg-white border-b-2 border-gray-300 dark:border-gray-700 dark:bg-gray-900">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <Link to="/home" className="flex items-center space-x-3 rtl:space-x-reverse">
-              <img src="src/Svg/Food.svg" className="h-8" alt="Food Logo" />
+              <img src="Svg/Food.svg" className="h-8" alt="Food Logo" />
             </Link>
   
             <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
               <div className="flex gap-6 items-center">
                 <Link to="/search" className="hover:text-yellow-500 transition">
-                  <img src="src/Svg/magnifying-glass-solid.svg" className="h-8" alt="Search" />
+                  <img src="Svg/magnifying-glass-solid.svg" className="h-8" alt="Search" />
                 </Link>
   
                 {/* Cart Button */}
                 <Link to="/cart" className="flex items-center">
-                  <img src="src\Svg\cart-shopping-solid.svg" className="h-8" alt="Cart" />
+                  <img src="Svg\cart-shopping-solid.svg" className="h-8" alt="Cart" />
                   <span className="text-black dark:text-white text-lg font-semibold">
                     ({counter}) {/* Displays total items from Cart1 to Cart12 */}
                   </span>
@@ -48,7 +48,7 @@ const Header = () => {
                   onClick={() => setIsOpen(!isOpen)}
                   className="hover:text-yellow-500 transition relative"
                 >
-                  <img src="src/Svg/user-solid.svg" className="h-8" alt="User" />
+                  <img src="Svg/user-solid.svg" className="h-8" alt="User" />
                 </button>
   
                 {/* Dropdown Menu */}

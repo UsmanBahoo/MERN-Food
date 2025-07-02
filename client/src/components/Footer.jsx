@@ -13,7 +13,7 @@ const Footer = () => {
                 <div className="mb-2 w-32 aspect-square flex items-center justify-center">
                     <img
                     className="max-w-full max-h-full object-contain"
-                    src="src/Image/email-icon.png"
+                    src="Image/email-icon.png"
                     alt="Email icon"
                     />
                 </div>
@@ -31,7 +31,7 @@ const Footer = () => {
                 <div className="mb-2 w-32 aspect-square flex items-center justify-center">
                     <img
                     className="max-w-full max-h-full object-contain"
-                    src="src/Image/clock-icon.png"
+                    src="Image/clock-icon.png"
                     alt="Clock icon"
                     />
                 </div>
@@ -49,7 +49,7 @@ const Footer = () => {
                 <div className="mb-2 w-32 aspect-square flex items-center justify-center">
                     <img
                     className="max-w-full max-h-full object-contain"
-                    src="src/Image/map-icon.png"
+                    src="Image/map-icon.png"
                     alt="Map icon"
                     />
                 </div>
@@ -67,7 +67,7 @@ const Footer = () => {
                 <div className="mb-2 w-32 aspect-square flex items-center justify-center">
                     <img
                     className="max-w-full max-h-full object-contain"
-                    src="src/Image/phone-icon.png"
+                    src="Image/phone-icon.png"
                     alt="Phone icon"
                     />
                 </div>
