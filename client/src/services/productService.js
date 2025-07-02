@@ -18,7 +18,7 @@ export const fetchProducts = async () => {
 // Fetch latest products (first 6 products)
 export const fetchLatestProducts = async (limit = 6) => {
   try {
-    const response = await fetch(`${API_BASE_URL}api/products`);
+    const response = await fetch(`${API_BASE_URL}/api/products`);
     if (!response.ok) {
       throw new Error('Failed to fetch latest products');
     }
@@ -37,7 +37,7 @@ export const fetchLatestProducts = async (limit = 6) => {
 // Fetch products by category
 export const fetchProductsByCategory = async (category) => {
   try {
-    const response = await fetch(`${API_BASE_URL}api/products/category/${category}`);
+    const response = await fetch(`${API_BASE_URL}/api/products/category/${category}`);
     if (!response.ok) {
       throw new Error('Failed to fetch products by category');
     }
@@ -52,7 +52,7 @@ export const fetchProductsByCategory = async (category) => {
 // Fetch single product by ID
 export const fetchProductById = async (id) => {
   try {
-    const response = await fetch(`${API_BASE_URL}api/products/${id}`);
+    const response = await fetch(`${API_BASE_URL}/api/products/${id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch product');
     }
