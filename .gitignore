@@ -82,7 +82,9 @@ dist
 
 # Gatsby files
 .cache/
-public
+# public - commented out to allow client/public with images
+# Uncomment next line if you have Gatsby and want to ignore its public folder
+# public
 
 # Vite build output
 client/dist/
