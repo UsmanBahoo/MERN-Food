@@ -227,11 +227,11 @@ const Home = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="w-full h-48 md:h-56 overflow-hidden rounded-lg bg-gray-100">
+                  <div className="w-full h-48 md:h-52 overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
                     <img 
                       src={`${API_BASE_URL}${dish.image}`} 
                       alt={dish.name} 
-                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" 
+                      className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
                     />
                   </div>
                   <h1 className="mt-4 text-gray-700 text-sm capitalize">{dish.category}</h1>
