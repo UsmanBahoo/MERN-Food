@@ -207,34 +207,40 @@ const Home = () => {
               <div className="text-lg sm:text-xl text-gray-600">No dishes available at the moment.</div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full max-w-7xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full max-w-6xl">
               {dishes.map((dish) => (
-                <div key={dish._id} className="border rounded-lg p-3 sm:p-4 md:p-5 bg-white shadow-lg relative group hover:shadow-xl transition-shadow duration-300">
-                  <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                    <div className="bg-white p-1.5 sm:p-2 rounded-full shadow-md hover:shadow-lg transition-shadow">
+                <div key={dish._id} className="border rounded-lg p-4 md:p-5 bg-white shadow-lg relative group hover:shadow-xl transition-shadow duration-300">
+                  <div className="absolute top-3 left-3 right-3 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                    <div className="bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-shadow">
                       <Link to={`/quick/${dish._id}`}>
                         <button>
-                          <img src="/Svg/eye-solid.svg" alt="View" className="w-4 h-4 sm:w-5 sm:h-5" />
+                          <img src="/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
                         </button>
                       </Link>
                     </div>
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleAddToCart(dish)}
-                        className="bg-white p-1.5 sm:p-2 rounded-full shadow-md hover:shadow-lg transition-shadow"
+                        className="bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-shadow"
                       >
-                        <img src="/Svg/cart-shopping-solid.svg" alt="Add to Cart" className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <img src="/Svg/cart-shopping-solid.svg" alt="Add to Cart" className="w-5 h-5" />
                       </button>
                     </div>
                   </div>
-                  <img src={`${API_BASE_URL}${dish.image}`} alt={dish.name} className="w-full h-40 sm:h-48 md:h-52 object-cover rounded-lg" />
-                  <h1 className="mt-3 sm:mt-4 md:mt-6 text-gray-700 text-xs sm:text-sm capitalize">{dish.category}</h1>
-                  <h3 className="mt-2 sm:mt-3 md:mt-4 text-base sm:text-lg font-semibold line-clamp-2">{dish.name}</h3>
-                  <div className="mt-3 sm:mt-4 md:mt-6 flex justify-between items-center">
-                    <span className="text-lg sm:text-xl font-bold text-gray-900">Rs. {dish.price}</span>
+                  <div className="w-full h-48 md:h-56 overflow-hidden rounded-lg bg-gray-100">
+                    <img 
+                      src={`${API_BASE_URL}${dish.image}`} 
+                      alt={dish.name} 
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" 
+                    />
+                  </div>
+                  <h1 className="mt-4 text-gray-700 text-sm capitalize">{dish.category}</h1>
+                  <h3 className="mt-2 text-lg font-semibold text-gray-900 line-clamp-2">{dish.name}</h3>
+                  <div className="mt-4 flex justify-between items-center">
+                    <span className="text-xl font-bold text-gray-900">Rs. {dish.price}</span>
                     <input
                       type="number"
-                      className="w-12 sm:w-14 md:w-16 p-1 sm:p-2 border rounded text-center text-sm"
+                      className="w-16 p-2 border border-gray-300 rounded text-center text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
                       defaultValue="1"
                       min="1"
                     />
