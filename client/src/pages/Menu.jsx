@@ -68,11 +68,11 @@ const Menu = () => {
         <>
           {/* Burgers Section */} 
           <section className="Foodcard">
-            <div className="mt-[100px] container mx-auto my-4 flex flex-col items-center">
-              <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
+            <div className="mt-16 sm:mt-20 md:mt-[100px] container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
+              <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
                 BURGERS
               </h1>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl justify-items-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full max-w-6xl justify-items-center">
                 {menuItems
                   .filter((item) => item.category === "burger")
                   .map((item) => (
@@ -84,11 +84,11 @@ const Menu = () => {
 
           {/* Pizzas Section */}
           <section className="Foodcard1">
-            <div className="container mx-auto my-4 flex flex-col items-center">
-              <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
+              <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
                 PIZZAS
               </h1>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl justify-items-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full max-w-6xl justify-items-center">
                 {menuItems
                   .filter((item) => item.category === "pizza")
                   .map((item) => (
@@ -100,11 +100,11 @@ const Menu = () => {
 
           {/* Desserts Section */}
           <section className="Foodcard2">
-            <div className="container mx-auto my-4 flex flex-col items-center">
-              <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
+              <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
                 DESSERTS
               </h1>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl justify-items-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full max-w-6xl justify-items-center">
                 {menuItems
                   .filter((item) => item.category === "desserts")
                   .map((item) => (
@@ -116,11 +116,11 @@ const Menu = () => {
 
           {/* Drinks Section */}
           <section className="Foodcard3">
-            <div className="container mx-auto my-4 flex flex-col items-center">
-              <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
+              <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
                 DRINKS
               </h1>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl justify-items-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full max-w-6xl justify-items-center">
                 {menuItems
                   .filter((item) => item.category === "drinks")
                   .map((item) => (
