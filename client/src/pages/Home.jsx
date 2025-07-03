@@ -193,48 +193,48 @@ const Home = () => {
       </section>
 
       <section className="foodcard">
-        <div className="mt-[100px] container mx-auto my-4 flex flex-col items-center">
-          <h1 className="mt-2 text-2xl sm:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
+        <div className="mt-[50px] sm:mt-[70px] md:mt-[100px] container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
+          <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl lg:text-4xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
             LATEST DISHES
           </h1>
 
           {loading ? (
-            <div className="flex justify-center items-center py-20">
-              <div className="text-xl text-gray-600">Loading latest dishes...</div>
+            <div className="flex justify-center items-center py-10 sm:py-15 md:py-20">
+              <div className="text-lg sm:text-xl text-gray-600">Loading latest dishes...</div>
             </div>
           ) : dishes.length === 0 ? (
-            <div className="flex justify-center items-center py-20">
-              <div className="text-xl text-gray-600">No dishes available at the moment.</div>
+            <div className="flex justify-center items-center py-10 sm:py-15 md:py-20">
+              <div className="text-lg sm:text-xl text-gray-600">No dishes available at the moment.</div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full max-w-7xl">
               {dishes.map((dish) => (
-                <div key={dish._id} className="border rounded-lg p-4 bg-white shadow-lg relative group">
-                  <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-white p-2 rounded-full shadow-md">
+                <div key={dish._id} className="border rounded-lg p-3 sm:p-4 md:p-5 bg-white shadow-lg relative group hover:shadow-xl transition-shadow duration-300">
+                  <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                    <div className="bg-white p-1.5 sm:p-2 rounded-full shadow-md hover:shadow-lg transition-shadow">
                       <Link to={`/quick/${dish._id}`}>
                         <button>
-                          <img src="/Svg/eye-solid.svg" alt="View" className="w-5 h-5" />
+                          <img src="/Svg/eye-solid.svg" alt="View" className="w-4 h-4 sm:w-5 sm:h-5" />
                         </button>
                       </Link>
                     </div>
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleAddToCart(dish)}
-                        className="bg-white p-2 rounded-full shadow-md"
+                        className="bg-white p-1.5 sm:p-2 rounded-full shadow-md hover:shadow-lg transition-shadow"
                       >
-                        <img src="/Svg/cart-shopping-solid.svg" alt="Add to Cart" className="w-5 h-5" />
+                        <img src="/Svg/cart-shopping-solid.svg" alt="Add to Cart" className="w-4 h-4 sm:w-5 sm:h-5" />
                       </button>
                     </div>
                   </div>
-                  <img src={`${API_BASE_URL}${dish.image}`} alt={dish.name} className="w-full h-auto object-cover rounded-lg" />
-                  <h1 className="mt-6 text-gray-700 text-sm capitalize">{dish.category}</h1>
-                  <h3 className="mt-6 text-lg font-semibold">{dish.name}</h3>
-                  <div className="mt-6 flex justify-between items-center">
-                    <span className="text-xl font-bold text-gray-900">Rs. {dish.price}</span>
+                  <img src={`${API_BASE_URL}${dish.image}`} alt={dish.name} className="w-full h-40 sm:h-48 md:h-52 object-cover rounded-lg" />
+                  <h1 className="mt-3 sm:mt-4 md:mt-6 text-gray-700 text-xs sm:text-sm capitalize">{dish.category}</h1>
+                  <h3 className="mt-2 sm:mt-3 md:mt-4 text-base sm:text-lg font-semibold line-clamp-2">{dish.name}</h3>
+                  <div className="mt-3 sm:mt-4 md:mt-6 flex justify-between items-center">
+                    <span className="text-lg sm:text-xl font-bold text-gray-900">Rs. {dish.price}</span>
                     <input
                       type="number"
-                      className="w-16 p-2 border rounded text-center"
+                      className="w-12 sm:w-14 md:w-16 p-1 sm:p-2 border rounded text-center text-sm"
                       defaultValue="1"
                       min="1"
                     />
@@ -247,7 +247,7 @@ const Home = () => {
           <Link to="/menu">
             <button
               type="button"
-              className="mt-20 text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-lg px-8 py-3.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
+              className="mt-10 sm:mt-15 md:mt-20 text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3.5 text-center me-2 mb-2 dark:focus:ring-yellow-900 transition-colors duration-200"
             >
               View All Menu
             </button>
