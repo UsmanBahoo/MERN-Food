@@ -86,7 +86,7 @@ const Menu = () => {
           <section className="Foodcard1">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
               <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
-                PIZZAS
+                PIZZA
               </h1>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full max-w-6xl justify-items-center">
                 {menuItems
@@ -173,9 +173,6 @@ const MenuCard = ({ item, onAdd }) => {
           src={`${API_BASE_URL}${item.image}`}
           alt={item.name}
           className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-          onError={(e) => {
-            e.target.src = "/placeholder-image.jpg";
-          }}
         />
       </div>
       <h1 className="mt-3 sm:mt-4 md:mt-6 text-gray-700 text-xs sm:text-sm capitalize">{item.category}</h1>
