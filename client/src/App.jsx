@@ -25,6 +25,7 @@ import UpdateProfile from './pages/UpdateProfile';
 import Address from './pages/Address';
 import NotFound from './pages/NotFound';
 import QuickNow from './pages/QuickNow';
+import Search from './pages/Search';
 
 // Admin Pages
 import Dashboard from './pages/admin/Dashboard';
@@ -65,6 +66,7 @@ function App() {
                   <Route path="/profile/update" element={<Page><UpdateProfile /></Page>} />
                   <Route path="/address" element={<Page><Address /></Page>} />
                   <Route path="/quick/:id" element={<Page><QuickNow /></Page>} />
+                  <Route path='/search' element={<Page><Search /></Page>} />
 
                   {/* Admin Routes */}
                   <Route path="/admin" element={<AdminPage><AdminLogin /></AdminPage>} />
