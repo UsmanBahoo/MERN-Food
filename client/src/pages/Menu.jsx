@@ -152,7 +152,9 @@ const MenuCard = ({ item, onAdd }) => {
 
   return (
     <div className="border rounded-lg p-3 sm:p-4 md:p-5 bg-white shadow-lg relative group hover:shadow-xl transition-shadow duration-300 w-full max-w-sm mx-auto">
-      <div className="absolute top-2 sm:top-3 left-2 sm:left-3 right-2 sm:right-3 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+      <div className="absolute top-2 sm:top-3 left-2 sm:left-3 right-2 sm:right-3 flex justify-between
+        opacity-100 sm:opacity-0 sm:group-hover:opacity-100
+        transition-opacity duration-300 z-10">
         <div className="bg-white p-1.5 sm:p-2 rounded-full shadow-md hover:shadow-lg transition-shadow">
           <Link to={`/quick/${item._id}`}>
             <button className="cursor-pointer">
