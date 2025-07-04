@@ -70,7 +70,7 @@ const Footer = () => {
                 <div className="container mx-auto px-4">
                     <p className="text-lg md:text-xl">
                     &copy; Copyright @ 2025 By{' '}
-                    <span className="text-yellow-400 font-semibold">Designed By Atif Shakeel</span> | All Rights Reserved!
+                    <span className="text-yellow-400 font-semibold">Designed By Usman Baho</span> | All Rights Reserved!
                     </p>
                 </div>
             </div>
