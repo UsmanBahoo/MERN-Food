@@ -35,7 +35,6 @@ const Menu = () => {
       quantity: quantity,
     };
     addItem(item);
-    alert(`${product.name} (${quantity}) added to cart!`);
     } catch (error) {
       console.error("Error adding to cart:", error);
     }

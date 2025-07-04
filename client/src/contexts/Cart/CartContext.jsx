@@ -1,14 +1,18 @@
 import { createContext, useState, useEffect } from "react";
+import useAuth from "../Auth/UseAuth";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  const { isLoggedIn } = useAuth(); // Get the current user from Auth context
+
   console.log("CartProvider initialized with cart:", cart);
 
   const addItem = (item) => {
-    setCart((prevCart) => {
+    if(isLoggedIn){
+      setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
       if (existingItem) {
         return prevCart.map((cartItem) =>
@@ -20,6 +24,12 @@ export const CartProvider = ({ children }) => {
         return [...prevCart, { ...item, quantity: 1 }];
       }
     });
+    } else {
+      console.warn("Cannot add item to cart. User is not logged in.");
+      alert("Please log in first.");
+    }
+
+    
   };
 
   const removeItem = (itemId) => {
