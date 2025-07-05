@@ -67,6 +67,10 @@ function App() {
                   <Route path="/address" element={<Page><Address /></Page>} />
                   <Route path="/quick/:id" element={<Page><QuickNow /></Page>} />
                   <Route path='/search' element={<Page><Search /></Page>} />
+                  <Route path="/menu/pizza" element={<Menu />} />
+                  <Route path="/menu/burger" element={<Menu />} />
+                  <Route path="/menu/desserts" element={<Menu />} />
+                  <Route path="/menu/drink" element={<Menu />} />
 
                   {/* Admin Routes */}
                   <Route path="/admin" element={<AdminPage><AdminLogin /></AdminPage>} />
