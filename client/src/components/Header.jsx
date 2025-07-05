@@ -54,7 +54,7 @@ const Header = () => {
   
                 {/* Dropdown Menu */}
                 {isOpen && (
-                  <div className="absolute right-24 top-10 mt-8 w-96 max-w-xs sm:max-w-sm md:max-w-md bg-white border border-gray-200 shadow-lg p-4 sm:p-6 z-10 rounded-lg">
+                  <div className="absolute top-12 sm:top-0 md:top-10 lg:top-10 right-4 sm:right-6 md:right-12 lg:right-20 mt-8 w-[90vw] sm:w-72 md:w-80 lg:w-96 bg-white border border-gray-200 shadow-lg p-4 sm:p-5 md:p-6 z-50 rounded-lg">
                     {isLoggedIn ? (
                       <div className="text-center">
                         <h1 className="text-lg sm:text-xl font-bold mb-4">{user?.name ? user?.name : "Anonymus User"}</h1>

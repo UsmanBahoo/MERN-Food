@@ -80,7 +80,7 @@ const Home = () => {
     <div>
       {/* Banner Section with Swiper */}
       <section className="banner">
-        <div className="w-full h-auto min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex justify-center items-center px-4 sm:px-8 lg:px-16">
+        <div className="w-full mt-30 h-auto min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex justify-center items-center px-4 sm:px-8 lg:px-16">
           <Swiper
             loop={true}
             autoplay={{ delay: 3000 }}
