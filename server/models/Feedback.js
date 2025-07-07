@@ -12,26 +12,7 @@ const FeedbackSchema = new mongoose.Schema({
         trim: true,
         lowercase: true
     },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    orderId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Order'
-    },
-    rating: {
-        type: Number,
-        required: true,
-        min: 1,
-        max: 5
-    },
     subject: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    message: {
         type: String,
         required: true,
         trim: true

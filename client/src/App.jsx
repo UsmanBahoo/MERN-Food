@@ -44,7 +44,7 @@ import AdminRegister from './pages/admin/AdminRegister';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App relative">
       <AuthProvider>
         <AdminAuthProvider>
           <CartProvider>

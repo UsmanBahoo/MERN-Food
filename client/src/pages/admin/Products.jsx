@@ -12,6 +12,7 @@ function Products() {
         category: '',
         image: null
     });
+    const [alert, setAlert] = useState(null);
 
     useEffect(() => {
         fetchProducts();
@@ -41,7 +42,12 @@ function Products() {
         }));
     }
 
-    const handleSubmit = (e) => {
+    const showAlert = (type, message) => {
+        setAlert({ type, message });
+        setTimeout(() => setAlert(null), 3000);
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         // Validate required fields
@@ -56,40 +62,36 @@ function Products() {
         formDataToSend.append('category', formData.category);
         formDataToSend.append('image', formData.image);
 
-        axios.post(`${API_BASE_URL}/api/products`, formDataToSend, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        .then(response => {
+        try {
+            const response = await axios.post(`${API_BASE_URL}/api/admin/products`, formDataToSend, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            });
+            
             if (response.status === 201) {
-                alert('Product added successfully!');
+                showAlert("success", "Product added successfully!");
                 setFormData({ name: '', price: '', category: '', image: null });
                 // Reset file input
                 const fileInput = document.querySelector('input[type="file"]');
                 if (fileInput) fileInput.value = '';
                 fetchProducts();
             }
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Error adding product:', error);
-            alert('Failed to add product: ' + (error.response?.data?.message || error.message));
-        });
+            showAlert("error", "Failed to add product. Please try again.");
+        }
     }
 
-    const handleDelete = (productId) => {
+
+    const handleDelete = async (productId) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
-            axios.delete(`${API_BASE_URL}/api/products/${productId}`)
-                .then(response => {
-                    if (response.status === 200) {
-                        alert('Product deleted successfully!');
-                        fetchProducts();
-                    }
-                })
-                .catch(error => {
-                    console.error('Error deleting product:', error);
-                    alert('Failed to delete product: ' + (error.response?.data?.message || error.message));
-                });
+            try {
+                await axios.delete(`${API_BASE_URL}/api/admin/products/${productId}`);
+                showAlert("success", "Product deleted successfully!");
+                fetchProducts();
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                showAlert("error", "Failed to delete product.");
+            }
         }
     }
 
@@ -172,6 +174,24 @@ function Products() {
               ))}
             </div>
           )}
+
+          {alert && (
+        <div className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg ${
+          alert.type === 'success' ? 'bg-green-500 text-white' 
+          : alert.type === 'error' ? 'bg-red-500 text-white'
+          : 'bg-blue-500 text-white'
+        }`}>
+          <div className="flex items-center justify-between">
+            <span>{alert.message}</span>
+            <button 
+              onClick={() => setAlert(null)}
+              className="ml-3 text-white hover:text-gray-200"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
         </div>
       );
 }

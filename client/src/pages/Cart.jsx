@@ -5,8 +5,6 @@ const Cart = () => {
   const { cart, removeItem, updateQuantity, clearCart, getTotalPrice } = useCart();
   const navigate = useNavigate();
 
-  console.log("Cart items:", cart);
-
   const totalPrice = getTotalPrice();
 
   // Handle quantity change and persist to global cart
@@ -58,7 +56,7 @@ const Cart = () => {
                 </Link>
                 <button
                   className="bg-white p-3 rounded-full shadow-md cursor-pointer"
-                  onClick={() => handleRemoveFromCart(item.id)}
+                  onClick={() => handleRemoveFromCart(item._id)}
                 >
                   <img src="Svg/x-solid.svg" alt="Remove from cart" className="w-5 h-5" />
                 </button>

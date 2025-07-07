@@ -8,7 +8,14 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [alert, setAlert] = useState(null);
   const { user, isLoggedIn } = useAuth();
+
+  // Function to show alert
+  const showAlert = (type, message) => {
+    setAlert({ type, message });
+    setTimeout(() => setAlert(null), 3000); // Auto hide after 3 seconds
+  };
 
   // Sync cart with database when user logs in
   useEffect(() => {
@@ -47,14 +54,17 @@ export const CartProvider = ({ children }) => {
         // Refresh cart from database
         const response = await axios.get(`${API_BASE_URL}/api/cart/${user._id}`);
         setCart(response.data.cart || []);
+        showAlert("success", `${item.name} added to cart!`);
       } catch (error) {
         console.error("Error adding to database cart:", error);
         // Fallback to local cart
         addToLocalCart(item);
+        showAlert("success", `${item.name} added to cart!`);
       }
     } else {
       // Add to local cart
       addToLocalCart(item);
+      showAlert("success", `${item.name} added to cart!`);
     }
   };
 
@@ -89,13 +99,16 @@ export const CartProvider = ({ children }) => {
         // Refresh cart from database
         const response = await axios.get(`${API_BASE_URL}/api/cart/${user._id}`);
         setCart(response.data.cart || []);
+        showAlert("success", "Item removed from cart");
       } catch (error) {
         console.error("Error removing from database cart:", error);
         // Fallback to local removal
         removeFromLocalCart(itemId);
+        showAlert("error", "Failed to remove item from cart");
       }
     } else {
       removeFromLocalCart(itemId);
+      showAlert("success", "Item removed from cart");
     }
   };
 
@@ -142,9 +155,13 @@ export const CartProvider = ({ children }) => {
       // Clear database cart
       try {
         await axios.delete(`${API_BASE_URL}/api/cart/${user._id}/clear`);
+        showAlert("success", "Cart cleared successfully!");
       } catch (error) {
         console.error("Error clearing database cart:", error);
+        showAlert("error", "Failed to clear cart");
       }
+    } else {
+      showAlert("success", "Cart cleared successfully!");
     }
     // Always clear local cart
     setCart([]);
@@ -202,6 +219,23 @@ export const CartProvider = ({ children }) => {
       }}
     >
       {children}
+      {alert && (
+        <div className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg ${
+          alert.type === 'success' 
+            ? 'bg-green-500 text-white' 
+            : 'bg-red-500 text-white'
+        }`}>
+          <div className="flex items-center justify-between">
+            <span>{alert.message}</span>
+            <button 
+              onClick={() => setAlert(null)}
+              className="ml-3 text-white hover:text-gray-200"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </CartContext.Provider>
   );
 };

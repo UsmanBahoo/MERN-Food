@@ -12,8 +12,13 @@ const Checkout = () => {
   const { user } = useAuth(); // Get user info from authentication context
   const navigate = useNavigate();
 
-  const [ success, setSuccess ] = useState(false);
-  const [ error ] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState(""); // Fixed variable name
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (type, message) => {
+    setAlert({ type, message });
+    setTimeout(() => setAlert(null), 3000);
+  };
 
   const cartItems = [
     ...cart.map(item => ({
@@ -28,12 +33,9 @@ const Checkout = () => {
     },
   ];
 
-  const [paymentMethod, setPaymentMethod] = useState(""); // Fixed variable name
-
-
   const handlePlaceOrder = async () => {
     if (!paymentMethod) {
-      alert("Please select a payment method!");
+      showAlert("error", "Please select a payment method!");
       return;
     }
 
@@ -67,37 +69,36 @@ const Checkout = () => {
     await axios.post(`${API_BASE_URL}/api/order`, orderData)
     .then(async (response) => {
       console.log("Order placed successfully:", response.data);
-      setSuccess(true);
+      showAlert("success", "Order placed successfully!");
       await clearCart(); // Use await to ensure cart is cleared properly
       clearAddress();
-      navigate("/order");
+      setTimeout(() => navigate("/order"), 1500); // Delay navigation to show alert
     })
     .catch((error) => {
       console.error("Error placing order:", error);
-      alert("Error placing order. Please try again.");
+      showAlert("error", "Failed to place order. Please try again.");
     });
 
     
   };
 
   return (
-    <div>
-      <section className="header">
-        <div className="w-full bg-gray-900 text-white text-center py-8">
-          <div className="container mx-auto px-4">
-            <h1 className="font-semibold text-4xl md:text-6xl">Checkout</h1>
-            <div className="mt-5 flex justify-center items-center space-x-2 text-sm text-gray-300">
-              <Link
-                to="/home"
-                className="text-xl md:text-2xl text-yellow-400 hover:text-yellow-500 transition capitalize"
-              >
-                Home
-              </Link>
-              <span className="text-xl md:text-2xl text-gray-200">/ Checkout</span>
-            </div>
+    <>
+      <section className="header"></section>
+      <div className="w-full bg-gray-900 text-white text-center py-8">
+        <div className="container mx-auto px-4">
+          <h1 className="font-semibold text-4xl md:text-6xl">Checkout</h1>
+          <div className="mt-5 flex justify-center items-center space-x-2 text-sm text-gray-300">
+            <Link
+              to="/home"
+              className="text-xl md:text-2xl text-yellow-400 hover:text-yellow-500 transition capitalize"
+            >
+              Home
+            </Link>
+            <span className="text-xl md:text-2xl text-gray-200">/ Checkout</span>
           </div>
         </div>
-      </section>
+      </div>
 
       <section className="py-10">
         <h1 className="text-3xl font-bold text-center mb-8 underline decoration-rose-600 underline-offset-8">
@@ -133,14 +134,14 @@ const Checkout = () => {
           </div>
 
           <div>
-             {user && (
+            {user && (
               <div className="mb-6">
                 <h3 className="text-lg font-semibold mb-2">USER INFO</h3>
                 <p className="text-gray-700">{user.name}</p>
                 <p className="text-gray-700">{user.email}</p>
                 <p className="text-gray-700">{user.phone}</p>
               </div>
-             )}
+            )}
           </div>
 
           <div className="mb-6">
@@ -164,7 +165,6 @@ const Checkout = () => {
               <p className="text-gray-700">{address.state}</p>
               <p className="text-gray-700">{address.pincode}</p>
               <p className="text-gray-700">{address.country}</p>
-
             </div>
           )}
 
@@ -179,7 +179,7 @@ const Checkout = () => {
           <div className="mb-6">
             <select
               className="w-full p-2 border rounded-lg text-gray-600"
-              value={paymentMethod} // Fixed variable name
+              value={paymentMethod}
               onChange={(e) => setPaymentMethod(e.target.value)}
             >
               <option value="" disabled>
@@ -196,11 +196,27 @@ const Checkout = () => {
           >
             Place Order
           </button>
-          {success && <p className="text-green-500 mt-4">Order placed successfully!</p>}
-          {error && <p className="text-red-500 mt-4">Error placing order. Please try again.</p>}
+          {/* Success and error messages are handled by alert */}
+          {alert && (
+            <div className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg ${
+              alert.type === 'success'
+                ? 'bg-green-500 text-white'
+                : 'bg-red-500 text-white'
+            }`}>
+              <div className="flex items-center justify-between">
+                <span>{alert.message}</span>
+                <button
+                  onClick={() => setAlert(null)}
+                  className="ml-3 text-white hover:text-gray-200"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

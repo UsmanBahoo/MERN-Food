@@ -75,7 +75,7 @@ const QuickNow = () => {
       <div className="flex flex-col md:flex-row flex-wrap justify-between items-center gap-4 auto-cols-fr">
         <div className="border rounded-lg p-4 bg-white shadow-lg w-80 relative group">
           <img
-            src={`${API_BASE_URL}${item.image}`}
+            src={item.image}
             alt={item.name}
             className="w-full h-64 object-cover rounded-lg"
             onError={(e) => {

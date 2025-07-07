@@ -94,6 +94,7 @@ const updateCartItem = async (req, res) => {
 
 // Remove item from cart
 const removeFromCart = async (req, res) => {
+    console.error('Removing item from cart', req.params);
     try {
         const { userId, itemId } = req.params;
 

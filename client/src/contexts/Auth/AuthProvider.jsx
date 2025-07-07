@@ -6,14 +6,24 @@ import { AuthContext } from "./AuthContext";
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [alert, setAlert] = useState(null);
+
+    // Function to show alert
+    const showAlert = (type, message) => {
+        setAlert({ type, message });
+        setTimeout(() => setAlert(null), 3000);
+    };
 
     const register = async(userData) => {
         await axios.post(`${API_BASE_URL}/api/auth/register`, userData)
         .then((response) => {
             console.log("Registration successful:", response.data);
+            showAlert("success", "Registration successful! Please login.");
         })
         .catch((error) => {
             console.error("Error registering:", error);
+            const errorMessage = error.response?.data?.message || "Registration failed";
+            showAlert("error", errorMessage);
         });
     }
 
@@ -25,9 +35,12 @@ export const AuthProvider = ({children}) => {
                 setUser(response.data.user);
                 localStorage.setItem('FPAUTHUS', JSON.stringify(response.data.user));
                 setIsLoggedIn(true);
+                showAlert("success", "Login successful!");
             })
             .catch((error) => {
                 console.error("Error logging in:", error);
+                const errorMessage = error.response?.data?.message || "Login failed";
+                showAlert("error", errorMessage);
             });
     };
 
@@ -35,6 +48,7 @@ export const AuthProvider = ({children}) => {
         localStorage.removeItem('FPAUTHUS');
         setIsLoggedIn(false);
         setUser(null);
+        showAlert("success", "Logged out successfully!");
     }
 
     const updateUser = async (userId, updatedData) => {
@@ -57,9 +71,28 @@ export const AuthProvider = ({children}) => {
         }
     }, []); 
 
+    const value = { user, register, login, logout, updateUser, isLoggedIn };
+
     return (
-        <AuthContext.Provider value={{user, register, login, logout, updateUser, isLoggedIn}}>
+        <AuthContext.Provider value={value}>
             {children}
+            {alert && (
+                <div className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg ${
+                    alert.type === 'success' 
+                        ? 'bg-green-500 text-white' 
+                        : 'bg-red-500 text-white'
+                }`}>
+                    <div className="flex items-center justify-between">
+                        <span>{alert.message}</span>
+                        <button 
+                            onClick={() => setAlert(null)}
+                            className="ml-3 text-white hover:text-gray-200"
+                        >
+                            ×
+                        </button>
+                    </div>
+                </div>
+            )}
         </AuthContext.Provider>
     )
 }

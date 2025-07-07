@@ -2,12 +2,13 @@ import Feedback from '../models/Feedback.js';
 
 const FeedbackController = {
     async createFeedback(req, res) {
+        console.log('Creating feedback with data:', req.body); // Log the request body for debugging
         try {
             const { name, email, phone, feedback } = req.body;
             if (!name || !email || !phone || !feedback) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
-            const newFeedback = new Feedback({ name, email, phone, feedback });
+            const newFeedback = new Feedback({ customerName: name, customerEmail:  email, subject: feedback });
             await newFeedback.save();
             res.status(201).json({ message: 'Feedback created successfully', feedback: newFeedback });
         } catch (error) {
