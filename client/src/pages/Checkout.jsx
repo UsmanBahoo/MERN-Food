@@ -64,12 +64,12 @@ const Checkout = () => {
       },
     }
 
-    await axios.post(`${API_BASE_URL}/api/order`, orderData) // Fixed API endpoint
-    .then((response) => {
+    await axios.post(`${API_BASE_URL}/api/order`, orderData)
+    .then(async (response) => {
       console.log("Order placed successfully:", response.data);
       setSuccess(true);
-      clearCart(); // Clear the cart after placing the order
-      clearAddress(); // Clear the address after placing the order
+      await clearCart(); // Use await to ensure cart is cleared properly
+      clearAddress();
       navigate("/order");
     })
     .catch((error) => {

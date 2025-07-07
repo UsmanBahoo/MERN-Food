@@ -81,15 +81,53 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const removeItem = (itemId) => {
+  const removeItem = async (itemId) => {
+    if (isLoggedIn && user?._id) {
+      // Remove from database
+      try {
+        await axios.delete(`${API_BASE_URL}/api/cart/${user._id}/item/${itemId}`);
+        // Refresh cart from database
+        const response = await axios.get(`${API_BASE_URL}/api/cart/${user._id}`);
+        setCart(response.data.cart || []);
+      } catch (error) {
+        console.error("Error removing from database cart:", error);
+        // Fallback to local removal
+        removeFromLocalCart(itemId);
+      }
+    } else {
+      removeFromLocalCart(itemId);
+    }
+  };
+
+  const removeFromLocalCart = (itemId) => {
     setCart((prevCart) =>
       prevCart.filter((cartItem) => cartItem.id !== itemId)
     );
   };
 
-  const updateQuantity = (itemId, quantity) => {
+  const updateQuantity = async (itemId, quantity) => {
+    if (isLoggedIn && user?._id) {
+      // Update in database
+      try {
+        await axios.put(`${API_BASE_URL}/api/cart/${user._id}/item/${itemId}`, {
+          quantity
+        });
+        // Refresh cart from database
+        const response = await axios.get(`${API_BASE_URL}/api/cart/${user._id}`);
+        setCart(response.data.cart || []);
+      } catch (error) {
+        console.error("Error updating database cart:", error);
+        // Fallback to local update
+        updateLocalQuantity(itemId, quantity);
+      }
+    } else {
+      updateLocalQuantity(itemId, quantity);
+    }
+  };
+
+  const updateLocalQuantity = (itemId, quantity) => {
     if (quantity < 1) {
-      removeItem(itemId);
+      removeFromLocalCart(itemId);
     } else {
       setCart((prevCart) =>
         prevCart.map((cartItem) =>
@@ -99,7 +137,16 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const clearCart = () => {
+  const clearCart = async () => {
+    if (isLoggedIn && user?._id) {
+      // Clear database cart
+      try {
+        await axios.delete(`${API_BASE_URL}/api/cart/${user._id}/clear`);
+      } catch (error) {
+        console.error("Error clearing database cart:", error);
+      }
+    }
+    // Always clear local cart
     setCart([]);
   };
 

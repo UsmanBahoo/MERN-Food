@@ -53,55 +53,62 @@ const Orders = () => {
           {isLoggedIn ? (
             orders.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {orders.map((order) => (
-                  <div
-                    key={order._id}
-                    className="border border-gray-300 p-6 rounded-lg shadow-md bg-white"
-                  >
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Placed On:</span>{" "}
-                      {order.updatedAt.substring(0, 10)}
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Name:</span> {user.name}
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Email:</span> {user.email}
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Number:</span>{" "}
-                      {user.phone}
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Address:</span>{" "}
-                      {order.shippingAddress.city}
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Payment Method:</span>{" "}
-                      {order.paymentMethod}
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Total Products:</span>{" "}
-                      {order.products.length}
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Total Price:</span> Rs.
-                      {order.totalPrice}/-
-                    </p>
-                    <p className="text-gray-700">
-                      <span className="font-semibold">Order Status:</span>{" "}
-                      <span
-                        className={`font-bold ${
-                          order.orderStatus === "Pending"
-                            ? "text-red-500"
-                            : "text-green-500"
-                        }`}
-                      >
-                        {order.orderStatus}
-                      </span>
-                    </p>
-                  </div>
-                ))}
+                {orders.map((order) => {
+                  // Status color mapping
+                  const statusColors = {
+                    pending: "text-red-500",
+                    confirmed: "text-blue-500",
+                    preparing: "text-yellow-500",
+                    "out for delivery": "text-purple-500",
+                    delivered: "text-green-500",
+                    cancelled: "text-gray-500",
+                  };
+                  const status = order.status?.toLowerCase();
+                  const statusColor = statusColors[status] || "text-gray-700";
+                  return (
+                    <div
+                      key={order._id}
+                      className="border border-gray-300 p-6 rounded-lg shadow-md bg-white"
+                    >
+                      <p className="text-gray-700 mb-2">
+                        <span className="font-semibold">Placed On:</span>{" "}
+                        {order.updatedAt.substring(0, 10)}
+                      </p>
+                      <p className="text-gray-700 mb-2">
+                        <span className="font-semibold">Name:</span> {user.name}
+                      </p>
+                      <p className="text-gray-700 mb-2">
+                        <span className="font-semibold">Email:</span> {user.email}
+                      </p>
+                      <p className="text-gray-700 mb-2">
+                        <span className="font-semibold">Number:</span>{" "}
+                        {user.phone}
+                      </p>
+                      <p className="text-gray-700 mb-2">
+                        <span className="font-semibold">Address:</span>{" "}
+                        {order.shippingAddress.city}
+                      </p>
+                      <p className="text-gray-700 mb-2">
+                        <span className="font-semibold">Payment Method:</span>{" "}
+                        {order.paymentMethod}
+                      </p>
+                      <p className="text-gray-700 mb-2">
+                        <span className="font-semibold">Total Products:</span>{" "}
+                        {order.products.length}
+                      </p>
+                      <p className="text-gray-700 mb-2">
+                        <span className="font-semibold">Total Price:</span> Rs.
+                        {order.totalPrice}/-
+                      </p>
+                      <p className="text-gray-700">
+                        <span className="font-semibold">Order Status:</span>{" "}
+                        <span className={`font-bold ${statusColor}`}>
+                          {order.status}
+                        </span>
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <p className="text-center text-2xl text-red-500">
