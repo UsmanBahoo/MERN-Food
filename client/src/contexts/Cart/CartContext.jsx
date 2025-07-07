@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import useAuth from "../Auth/UseAuth";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -71,9 +72,13 @@ export const CartProvider = ({ children }) => {
   // Load cart from localStorage on component mount
   useEffect(() => {
     try {
+      console.log("Loading cart from localStorage", localStorage.getItem("cart"));
       const storedCart = localStorage.getItem("cart");
-      if (storedCart) {
-        setCart(JSON.parse(storedCart));
+      if (storedCart && storedCart !== 'undefined' && storedCart !== 'null') {
+        const parsedCart = JSON.parse(storedCart);
+        if (Array.isArray(parsedCart)) {
+          setCart(parsedCart);
+        }
       }
     } catch (error) {
       console.error("Error parsing cart from localStorage:", error);
@@ -83,8 +88,12 @@ export const CartProvider = ({ children }) => {
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    console.log("Saving cart to localStorage:", cart);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      console.log("Cart saved to localStorage:", cart);
+    } catch (error) {
+      console.error("Error saving cart to localStorage:", error);
+    }
   }, [cart]);
 
   return (

@@ -37,7 +37,7 @@ const Home = () => {
       const item = {
         ...product,
         id: product._id,
-        image: `${API_BASE_URL}${product.image}`,
+        image: product.image,
         quantity: quantity,
       };
       addItem(item);
@@ -129,7 +129,7 @@ const Home = () => {
           </h1>
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 auto-cols-fr">
             <Link
-              to="/menu/pizza"
+              to="/menu#pizza"
                 onClick={(e) => {
                 console.log("Clicked!");
                 if (!userIsLoggedIn) {
@@ -151,7 +151,7 @@ const Home = () => {
               </h5>
             </Link>
             <Link
-              to="/menu/burger"
+              to="/menu#burger"
                 onClick={(e) => {
                 console.log("Clicked!");
                 if (!userIsLoggedIn) {
@@ -173,7 +173,7 @@ const Home = () => {
               </h5>
             </Link>
             <Link
-              to="/menu/drink"
+              to="/menu#drink"
                 onClick={(e) => {
                 console.log("Clicked!");
                 if (!userIsLoggedIn) {

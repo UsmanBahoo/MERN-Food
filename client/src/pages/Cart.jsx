@@ -5,6 +5,8 @@ const Cart = () => {
   const { cart, removeItem, updateQuantity, clearCart, getTotalPrice } = useCart();
   const navigate = useNavigate();
 
+  console.log("Cart items:", cart);
+
   const totalPrice = getTotalPrice();
 
   // Handle quantity change and persist to global cart
@@ -62,7 +64,7 @@ const Cart = () => {
                 </button>
               </div>
               <img src={item.image} alt={item.name} className="w-full h-auto object-cover rounded-lg " />
-              <h1 className="mt-6 text-gray-700 text-sm">{item.id <= 3 ? "Burger" : "Pizza"}</h1>
+              <h1 className="mt-6 text-gray-700 text-sm capitalize">{item.category || "Food Item"}</h1>
               <h3 className="mt-2 text-lg font-semibold">{item.name}</h3>
               <div className="mt-4 flex justify-between items-center">
                 <span className="text-xl font-bold text-gray-900">Rs. {item.price}</span>

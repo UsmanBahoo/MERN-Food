@@ -66,7 +66,7 @@ const Menu = () => {
       ) : (
         <>
           {/* Burgers Section */} 
-          <section className="Foodcard">
+          <section className="Foodcard" id="burger">
             <div className="mt-16 sm:mt-20 md:mt-[100px] container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
               <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
                 BURGERS
@@ -82,7 +82,7 @@ const Menu = () => {
           </section>
 
           {/* Pizzas Section */}
-          <section className="Foodcard1">
+          <section className="Foodcard1" id="pizza">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
               <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
                 PIZZA
@@ -98,7 +98,7 @@ const Menu = () => {
           </section>
 
           {/* Desserts Section */}
-          <section className="Foodcard2">
+          <section className="Foodcard2" id="desserts">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
               <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
                 DESSERTS
@@ -114,7 +114,7 @@ const Menu = () => {
           </section>
 
           {/* Drinks Section */}
-          <section className="Foodcard3">
+          <section className="Foodcard3" id="drinks">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
               <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-4 sm:mb-6">
                 DRINKS
