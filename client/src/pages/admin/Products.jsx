@@ -165,7 +165,7 @@ function Products() {
                     name={item.name}
                     price={item.price}
                     category={item.category}
-                    image={item.image ? `${API_BASE_URL}${item.image}` : '/placeholder-image.jpg'}
+                    image={item.image ? item.image : '/placeholder-image.jpg'}
                     onDelete={() => handleDelete(item._id)}
                   />
                 </div>

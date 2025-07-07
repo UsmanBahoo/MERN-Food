@@ -21,6 +21,10 @@ const productSchema = new Schema({
     type: String,
     required: true
   },
+  cloudinaryId: {
+    type: String,
+    required: false
+  },
   isAvailable: {
     type: Boolean,
     default: true

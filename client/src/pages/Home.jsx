@@ -228,7 +228,7 @@ const Home = () => {
                   </div>
                   <div className="w-full h-48 md:h-52 overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
                     <img 
-                      src={`${API_BASE_URL}${dish.image}`} 
+                      src={dish.image} 
                       alt={dish.name} 
                       className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
                     />

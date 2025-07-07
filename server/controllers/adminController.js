@@ -6,6 +6,7 @@ import Product from '../models/Product.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { deleteImage } from '../utils/cloudinary.js';
 
 // Get directory name for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -22,6 +23,11 @@ const getAllProducts = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
+  // Add this debug log temporarily
+  console.log('Environment variables in controller:');
+  console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME);
+  console.log('CLOUDINARY_API_KEY:', process.env.CLOUDINARY_API_KEY);
+  
   console.log('Creating product with body:', req.body);
   console.log('Uploaded file:', req.file);
   try {
@@ -32,33 +38,18 @@ const createProduct = async (req, res) => {
       return res.status(400).json({ message: 'Product image is required' });
     }
 
-    // Ensure uploads directory exists
-    const uploadsDir = path.join(__dirname, '..', 'uploads');
-    const productsDir = path.join(uploadsDir, 'products');
-    
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
-    }
-    
-    if (!fs.existsSync(productsDir)) {
-      fs.mkdirSync(productsDir, { recursive: true });
-    }
-
     const product = new Product({
       name,
       price,
       category,
-      image: `/uploads/products/${req.file.filename}` // Store relative path
+      image: req.file.path, // Cloudinary URL
+      cloudinaryId: req.file.filename // Cloudinary public ID
     });
 
     await product.save();
     res.status(201).json({ message: 'Product created successfully', product });
   } catch (error) {
     console.error('Error creating product:', error);
-    // Delete uploaded file if product creation fails
-    if (req.file && fs.existsSync(req.file.path)) {
-      fs.unlinkSync(req.file.path);
-    }
     res.status(500).json({ message: 'Error creating product', error: error.message });
   }
 };
@@ -79,14 +70,17 @@ const updateProduct = async (req, res) => {
 
     // If new image is uploaded, replace the old one
     if (req.file) {
-      // Delete old image file
-      if (product.image) {
-        const oldImagePath = path.join(__dirname, '..', product.image);
-        if (fs.existsSync(oldImagePath)) {
-          fs.unlinkSync(oldImagePath);
+      // Delete old image from Cloudinary
+      if (product.cloudinaryId) {
+        try {
+          await deleteImage(product.cloudinaryId);
+        } catch (error) {
+          console.error('Error deleting old image:', error);
         }
       }
-      product.image = `/uploads/products/${req.file.filename}`;
+      
+      product.image = req.file.path; // New Cloudinary URL
+      product.cloudinaryId = req.file.filename; // New Cloudinary public ID
     }
 
     await product.save();
@@ -105,11 +99,12 @@ const deleteProduct = async (req, res) => {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    // Delete image file
-    if (product.image) {
-      const imagePath = path.join(__dirname, '..', product.image);
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
+    // Delete image from Cloudinary
+    if (product.cloudinaryId) {
+      try {
+        await deleteImage(product.cloudinaryId);
+      } catch (error) {
+        console.error('Error deleting image from Cloudinary:', error);
       }
     }
 

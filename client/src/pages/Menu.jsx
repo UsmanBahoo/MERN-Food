@@ -169,9 +169,12 @@ const MenuCard = ({ item, onAdd }) => {
       </div>
       <div className="w-full h-40 sm:h-48 md:h-52 lg:h-56 overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
         <img
-          src={`${API_BASE_URL}${item.image}`}
+          src={item.image} // Direct Cloudinary URL
           alt={item.name}
-          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+          className="w-full h-64 object-cover rounded-lg"
+          onError={(e) => {
+            e.target.src = "/placeholder-image.jpg";
+          }}
         />
       </div>
       <h1 className="mt-3 sm:mt-4 md:mt-6 text-gray-700 text-xs sm:text-sm capitalize">{item.category}</h1>
