@@ -62,7 +62,6 @@ function Address() {
     await saveAddress(formData) // Save the address using the context function
     .then(() => {
       setIsLoading(false)
-      console.log("Address saved successfully:", formData);
       setSuccess("Address saved successfully!"); // Set success message
       setTimeout(() => {
         setSuccess("Redirecting to checkout..."); // Set redirect message

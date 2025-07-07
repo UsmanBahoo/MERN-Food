@@ -26,7 +26,7 @@ function Dashboard() {
     try {
       setLoading(true);
       
-      // Fetch all data in parallel
+      // Fetch all data in parallel using admin routes
       const [
         adminsResponse,
         ordersResponse,
@@ -41,8 +41,8 @@ function Dashboard() {
         axios.get(`${API_BASE_URL}/api/feedbacks`)
       ]);
 
-      // Process orders data
-      const orders = ordersResponse.data.orders || [];
+      // Process orders data - API returns array directly
+      const orders = ordersResponse.data || [];
       const pendingOrders = orders.filter(order => 
         order.status === 'pending' || order.orderStatus === 'Pending'
       ).length;
@@ -51,7 +51,7 @@ function Dashboard() {
       ).length;
 
       // Process feedbacks data
-      const feedbacks = feedbacksResponse.data.feedbacks || [];
+      const feedbacks = feedbacksResponse.data.feedbacks || feedbacksResponse.data || [];
       const unreadFeedbacks = feedbacks.filter(feedback => 
         feedback.status === 'unread'
       ).length;
@@ -62,9 +62,9 @@ function Dashboard() {
         { id: 2, value: pendingOrders, label: "total pendings", buttonText: "See Orders", link: "/admin/orders" },
         { id: 3, value: completedOrders, label: "total completes", buttonText: "See Orders", link: "/admin/orders" },
         { id: 4, value: orders.length, label: "total orders", buttonText: "See Orders", link: "/admin/orders" },
-        { id: 5, value: productsResponse.data.products?.length || 0, label: "products added", buttonText: "See Products", link: "/admin/products" },
-        { id: 6, value: usersResponse.data.users?.length || 0, label: "users accounts", buttonText: "See Users", link: "/admin/users" },
-        { id: 7, value: adminsResponse.data.admins?.length || 0, label: "admins", buttonText: "See Admins", link: "/admin/admins" },
+        { id: 5, value: productsResponse.data.products?.length || productsResponse.data?.length || 0, label: "products added", buttonText: "See Products", link: "/admin/products" },
+        { id: 6, value: usersResponse.data.users?.length || usersResponse.data?.length || 0, label: "users accounts", buttonText: "See Users", link: "/admin/users" },
+        { id: 7, value: adminsResponse.data.admins?.length || adminsResponse.data?.length || 0, label: "admins", buttonText: "See Admins", link: "/admin/admins" },
         { id: 8, value: unreadFeedbacks, label: "new messages", buttonText: "See Messages", link: "/admin/feedbacks" },
       ];
 

@@ -15,6 +15,7 @@ import orderRouter from './routes/orderRoutes.js';
 import adminRouter from './routes/admin.js';
 import adminAuthRouter from './routes/adminAuth.js';
 import productRouter from './routes/productRoutes.js';
+import cartRouter from './routes/cartRoutes.js';
 
 import connectDB from './database/db.js';
 
@@ -38,6 +39,7 @@ app.use('/api', userRouter);
 app.use('/api', authRouter);
 app.use('/api', feedbackRouter);
 app.use('/api', orderRouter);
+app.use('/api', cartRouter);
 app.use('/api', adminRouter);
 app.use('/api/admin', adminAuthRouter);
 app.use('/api', productRouter);

@@ -4,6 +4,7 @@ import useCart from "../contexts/Cart/UseCart";
 import useShippingContext from "../contexts/Shipping/UseShippingContext"; // Importing the custom hook to access shipping context
 import useAuth from "../contexts/Auth/UseAuth"; // Importing the custom hook to access authentication context
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const Checkout = () => {
   const { cart, getTotalPrice, clearCart } = useCart(); // Get cart items from context
@@ -11,10 +12,8 @@ const Checkout = () => {
   const { user } = useAuth(); // Get user info from authentication context
   const navigate = useNavigate();
 
-  const total = getTotalPrice(); // Calculate total price from cart items
-
   const [ success, setSuccess ] = useState(false);
-  const [ error, setError ] = useState(false);
+  const [ error ] = useState(false);
 
   const cartItems = [
     ...cart.map(item => ({
@@ -29,44 +28,43 @@ const Checkout = () => {
     },
   ];
 
-  const [paymenMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState(""); // Fixed variable name
 
 
   const handlePlaceOrder = async () => {
-    if (!paymenMethod) {
+    if (!paymentMethod) {
       alert("Please select a payment method!");
       return;
     }
 
   
-    const products = cart.map(item => {
-      return {
-        productId: item.id,
-        quantity: item.quantity || 1,
-      };
-    })
-    const totalPrice = getTotalPrice();
-    const paymentMethod = paymenMethod;
-    const shippingAddress = {
-      flat: address.flatNo,
-      building: address.buildingNo,
-      area: address.areaName,
-      town: address.townName,
-      city: address.cityName,
-      state: address.stateName,
-      country: address.countryName,
-      pincode: address.pinCode,
-    }
+    // Format products properly for the order
+    const orderProducts = cart.map(item => ({
+      productId: item.id || item._id || item.productId,
+      quantity: item.quantity,
+      name: item.name,
+      price: item.price,
+      image: item.image
+    }));
 
-    const data = {
+    const orderData = {
       user,
-      products,
-      totalPrice,
-      paymentMethod,
-      shippingAddress,
+      products: orderProducts,
+      totalPrice: getTotalPrice(),
+      paymentMethod, // Fixed variable name
+      shippingAddress: {
+        flat: address.flatNo,
+        building: address.buildingNo,
+        area: address.areaName,
+        town: address.townName,
+        city: address.cityName,
+        state: address.stateName,
+        country: address.countryName,
+        pincode: address.pinCode,
+      },
     }
 
-    await axios.post("http://localhost:5000/api/order", data)
+    await axios.post(`${API_BASE_URL}/api/order`, orderData) // Fixed API endpoint
     .then((response) => {
       console.log("Order placed successfully:", response.data);
       setSuccess(true);
@@ -181,7 +179,7 @@ const Checkout = () => {
           <div className="mb-6">
             <select
               className="w-full p-2 border rounded-lg text-gray-600"
-              value={paymenMethod}
+              value={paymentMethod} // Fixed variable name
               onChange={(e) => setPaymentMethod(e.target.value)}
             >
               <option value="" disabled>

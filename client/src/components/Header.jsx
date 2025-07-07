@@ -11,8 +11,6 @@ const Header = () => {
     const { isLoggedIn, logout, user } = useAuth();
     const { getTotalItems, clearCartOnLogout} = useCart();
 
-    console.log("User:", JSON.stringify(user)); // Log user data to console
-
     const counter = getTotalItems(); // Get total items of cart
 
     // Handle logout

@@ -1,36 +1,84 @@
 import { createContext, useState, useEffect } from "react";
 import useAuth from "../Auth/UseAuth";
+import axios from "axios";
+import API_BASE_URL from "../../config/api";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const { user, isLoggedIn } = useAuth();
 
-  const { isLoggedIn } = useAuth(); // Get the current user from Auth context
+  // Sync cart with database when user logs in
+  useEffect(() => {
+    if (isLoggedIn && user?._id) {
+      syncCartWithDatabase();
+    }
+  }, [isLoggedIn, user]);
 
-  console.log("CartProvider initialized with cart:", cart);
+  const syncCartWithDatabase = async () => {
+    try {
+      // First, sync local cart to database
+      if (cart.length > 0) {
+        await axios.post(`${API_BASE_URL}/api/cart/${user._id}/sync`, {
+          localCart: cart,
+        });
+      }
 
-  const addItem = (item) => {
-    if(isLoggedIn){
-      setCart((prevCart) => {
-      const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
+      // Then fetch the updated cart from database
+      const response = await axios.get(`${API_BASE_URL}/api/cart/${user._id}`);
+      if (response.status === 200) {
+        setCart(response.data.cart || []);
+      }
+    } catch (error) {
+      console.error("Error syncing cart:", error);
+    }
+  };
+
+  const addItem = async (item) => {
+    if (isLoggedIn && user?._id) {
+      // Add to database
+      try {
+        await axios.post(`${API_BASE_URL}/api/cart/${user._id}/add`, {
+          productId: item.id || item._id,
+          quantity: item.quantity || 1,
+        });
+        // Refresh cart from database
+        const response = await axios.get(`${API_BASE_URL}/api/cart/${user._id}`);
+        setCart(response.data.cart || []);
+      } catch (error) {
+        console.error("Error adding to database cart:", error);
+        // Fallback to local cart
+        addToLocalCart(item);
+      }
+    } else {
+      // Add to local cart
+      addToLocalCart(item);
+    }
+  };
+
+  const addToLocalCart = (item) => {
+    setCart((prevCart) => {
+      const itemId = item.id || item._id;
+      const existingItem = prevCart.find((cartItem) => 
+        (cartItem.id || cartItem._id) === itemId
+      );
+      
       if (existingItem) {
         return prevCart.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          (cartItem.id || cartItem._id) === itemId
+            ? { ...cartItem, quantity: cartItem.quantity + (item.quantity || 1) }
             : cartItem
         );
       } else {
-        return [...prevCart, { ...item, quantity: 1 }];
+        return [...prevCart, { 
+          ...item, 
+          id: itemId, // Ensure consistent ID field
+          quantity: item.quantity || 1 
+        }];
       }
     });
-    } else {
-      console.warn("Cannot add item to cart. User is not logged in.");
-      alert("Please log in first.");
-    }
-
-    
   };
 
   const removeItem = (itemId) => {
@@ -40,7 +88,6 @@ export const CartProvider = ({ children }) => {
   };
 
   const updateQuantity = (itemId, quantity) => {
-    console.log("Updating quantity for item:", itemId, "to:", quantity);
     if (quantity < 1) {
       removeItem(itemId);
     } else {
@@ -72,9 +119,8 @@ export const CartProvider = ({ children }) => {
   // Load cart from localStorage on component mount
   useEffect(() => {
     try {
-      console.log("Loading cart from localStorage", localStorage.getItem("cart"));
       const storedCart = localStorage.getItem("cart");
-      if (storedCart && storedCart !== 'undefined' && storedCart !== 'null') {
+      if (storedCart && storedCart !== "undefined" && storedCart !== "null") {
         const parsedCart = JSON.parse(storedCart);
         if (Array.isArray(parsedCart)) {
           setCart(parsedCart);
@@ -90,7 +136,6 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     try {
       localStorage.setItem("cart", JSON.stringify(cart));
-      console.log("Cart saved to localStorage:", cart);
     } catch (error) {
       console.error("Error saving cart to localStorage:", error);
     }

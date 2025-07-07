@@ -9,11 +9,15 @@ function Orders() {
         fetchOrders();
     }, []);
 
+    console.log("Orders fetched:", orders);
+
     const fetchOrders = () => {
         axios.get(`${API_BASE_URL}/api/orders`)
             .then(response => {
+                console.log("Response from orders API:", response);
                 if (response.status === 200) {
-                    setOrders(response.data.orders || []);
+                    // Fix: API returns data directly, not wrapped in orders object
+                    setOrders(response.data || []);
                 } else {
                     console.error("Failed to fetch orders");
                     setOrders([]);

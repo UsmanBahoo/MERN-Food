@@ -47,7 +47,7 @@ const Cart = () => {
         {cart.length > 0 ? (
           cart.map((item) => (
             <div
-              key={item.id}
+              key={item._id}
               className="border rounded-lg p-4 bg-white shadow-lg w-80 relative group"
             >
               <div className="absolute top-2 lg:top-3 left-2 lg:left-3 right-2 lg:right-3 flex justify-between opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-10">
