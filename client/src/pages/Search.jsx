@@ -136,7 +136,7 @@ const Search = () => {
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
               </div>
             ) : searchResults.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {searchResults.map((product) => (
                   <ProductCard
                     key={product._id}
@@ -184,7 +184,7 @@ const ProductCard = ({ item, onAdd }) => {
   };
 
   return (
-    <div className="border rounded-lg p-4 bg-white shadow-lg w-full max-w-sm mx-auto relative group">
+    <div className="border rounded-lg p-4 bg-white shadow-lg w-full relative group">
       <div className="absolute top-2 left-2 right-2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
         <div className="bg-white p-2 rounded-full shadow-md">
           <Link to={`/quick/${item._id}`}>

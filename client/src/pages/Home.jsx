@@ -10,6 +10,7 @@ import { fetchLatestProducts } from "../services/productService";
 import API_BASE_URL from "../config/api";
 
 const Home = () => {
+  const userIsLoggedIn = true;
   const { addItem } = useCart();
   const [dishes, setDishes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -79,7 +80,7 @@ const Home = () => {
     <div>
       {/* Banner Section with Swiper */}
       <section className="banner">
-        <div className="w-full h-auto min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex justify-center items-center px-4 sm:px-8 lg:px-16">
+        <div className="w-full mt-30 h-auto min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex justify-center items-center px-4 sm:px-8 lg:px-16">
           <Swiper
             loop={true}
             autoplay={{ delay: 3000 }}
@@ -129,6 +130,13 @@ const Home = () => {
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 auto-cols-fr">
             <Link
               to="/menu/pizza"
+                onClick={(e) => {
+                console.log("Clicked!");
+                if (!userIsLoggedIn) {
+                  e.preventDefault();
+                  alert("Please login first!");
+                }
+              }}
               className="flex flex-col items-center justify-center p-6 w-48 sm:w-56 md:w-64 bg-white border border-gray-200 hover:border-rose-600 rounded-2xl group min-h-[150px] transition-all duration-300"
             >
               <div className="mb-2 w-32 aspect-square flex items-center justify-center">
@@ -144,6 +152,13 @@ const Home = () => {
             </Link>
             <Link
               to="/menu/burger"
+                onClick={(e) => {
+                console.log("Clicked!");
+                if (!userIsLoggedIn) {
+                  e.preventDefault();
+                  alert("Please login first!");
+                }
+              }}
               className="flex flex-col items-center justify-center p-6 w-48 sm:w-56 md:w-64 bg-white border border-gray-200 hover:border-rose-600 rounded-2xl group min-h-[150px] transition-all duration-300"
             >
               <div className="mb-2 w-32 aspect-square flex items-center justify-center">
@@ -159,6 +174,13 @@ const Home = () => {
             </Link>
             <Link
               to="/menu/drink"
+                onClick={(e) => {
+                console.log("Clicked!");
+                if (!userIsLoggedIn) {
+                  e.preventDefault();
+                  alert("Please login first!");
+                }
+              }}
               className="flex flex-col items-center justify-center p-6 w-48 sm:w-56 md:w-64 bg-white border border-gray-200 hover:border-rose-600 rounded-2xl group min-h-[150px] transition-all duration-300"
             >
               <div className="mb-2 w-32 aspect-square flex items-center justify-center">
@@ -174,6 +196,13 @@ const Home = () => {
             </Link>
             <Link
               to="/menu/desserts"
+                onClick={(e) => {
+                console.log("Clicked!");
+                if (!userIsLoggedIn) {
+                  e.preventDefault();
+                  alert("Please login first!");
+                }
+              }}
               className="flex flex-col items-center justify-center p-6 w-48 sm:w-56 md:w-64 bg-white border border-gray-200 hover:border-rose-600 rounded-2xl group min-h-[150px] transition-all duration-300"
             >
               <div className="mb-2 w-32 aspect-square flex items-center justify-center">
