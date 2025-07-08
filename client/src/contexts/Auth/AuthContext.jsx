@@ -53,6 +53,46 @@ export const AuthProvider = ({children}) => {
         });
     };
 
+    const refreshUser = async () => {
+        try {
+            const storedUser = localStorage.getItem('FPAUTHUS');
+            if (storedUser && storedUser !== 'undefined') {
+                const userData = JSON.parse(storedUser);
+                // Fetch fresh user data from server
+                const response = await axios.get(`${API_BASE_URL}/api/user/${userData._id}`);
+                if (response.status === 200) {
+                    console.log("User refreshed:", response.data.user);
+                    setUser(response.data.user);
+                    localStorage.setItem('FPAUTHUS', JSON.stringify(response.data.user));
+                }
+            }
+        } catch (error) {
+            console.error("Error refreshing user data:", error);
+        }
+    };
+
+    const updateUserLocation = async (locationData) => {
+        console.log("updateUserLocation function called with:", locationData);
+        try {
+            if (!user?._id) {
+                console.error("No user ID available");
+                return { success: false, error: "No user logged in" };
+            }
+            
+            console.log("Updating location for user:", user._id);
+            const response = await axios.put(`${API_BASE_URL}/api/users/${user._id}/location`, locationData);
+            
+            if (response.status === 200) {
+                console.log("Location updated successfully:", response.data.user);
+                setUser(response.data.user);
+                localStorage.setItem('FPAUTHUS', JSON.stringify(response.data.user));
+                return { success: true };
+            }
+        } catch (error) {
+            console.error("Error updating location:", error);
+            return { success: false, error: error.message };
+        }
+    };
 
     useEffect(() => {
         const storedUser = localStorage.getItem('FPAUTHUS');
@@ -62,9 +102,23 @@ export const AuthProvider = ({children}) => {
         }
     }, []); 
 
+    // Create the context value object
+    const contextValue = {
+        user, 
+        register, 
+        login, 
+        logout, 
+        updateUser, 
+        refreshUser,
+        updateUserLocation: updateUserLocation, // Explicitly bind
+        isLoggedIn
+    };
+
+    // Debug: Log what we're providing
+    console.log("AuthContext Provider value keys:", Object.keys(contextValue));
 
     return (
-        <AuthContext.Provider value={{user, register, login, logout, updateUser, isLoggedIn}}>
+        <AuthContext.Provider value={contextValue}>
             {children}
         </AuthContext.Provider>
     )

@@ -16,6 +16,7 @@ const UserController = {
             const userId = req.params.id;
             const user = await User.findById(userId);
             if (!user) {
+                console.log('User not found with ID:', userId);
                 return res.status(404).json({ message: 'User not found' });
             }
             res.status(200).json(user);
@@ -63,7 +64,45 @@ const UserController = {
         catch (error) {
             res.status(500).json({ message: 'Error logging in', error: error.message });
         }
-    }
+    },
+
+    async updateAddress(req, res) {
+        try {
+            const userId = req.params.id;
+            const { address } = req.body;
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { address },
+                { new: true }
+            );
+            if (!updatedUser) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            res.status(200).json({ message: 'Address updated successfully', user: updatedUser });
+        } catch (error) {
+            res.status(500).json({ message: 'Error updating address', error: error.message });
+        }
+    },
+
+    async updateLocation(req, res) {
+        console.log('Id: ', req.params.id);
+        console.log('Body: ', req.body);
+        try {
+            const userId = req.params.id;
+            const { location } = req.body;
+            const updatedUser = await User.findByIdAndUpdate(
+                userId,
+                { location },
+                { new: true }
+            );
+            if (!updatedUser) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            res.status(200).json({ message: 'Location updated successfully', user: updatedUser });
+        } catch (error) {
+            res.status(500).json({ message: 'File: UserController 101: Error updating location', error: error.message });
+        }
+    },
 
 };
 

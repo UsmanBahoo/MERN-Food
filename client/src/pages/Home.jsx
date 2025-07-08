@@ -5,15 +5,20 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import useAuth from "../contexts/Auth/UseAuth";
 import useCart from "../contexts/Cart/UseCart";
 import { fetchLatestProducts } from "../services/productService";
 import API_BASE_URL from "../config/api";
+import LocationPanel from '../components/LocationPanel';
 
 const Home = () => {
-  const userIsLoggedIn = true;
+  const { user, isLoggedIn } = useAuth(); // Remove refreshUser since we handle it in AuthContext
+  const userIsLoggedIn = isLoggedIn;
   const { addItem } = useCart();
   const [dishes, setDishes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showLocationPanel, setShowLocationPanel] = useState(false);
+
   useEffect(() => {
     const loadLatestDishes = async () => {
       try {
@@ -31,6 +36,25 @@ const Home = () => {
     loadLatestDishes();
   }, []);
 
+  console.log("user coordinates:", user?.location?.coordinates);
+
+  // Check if user location is not set
+  useEffect(() => {
+    if (isLoggedIn && user && user.location) {
+      const { coordinates } = user.location;
+      console.log("Checking user location coordinates:", coordinates);
+      if (!coordinates || (coordinates[0] === 0 && coordinates[1] === 0)) {
+        console.log("Location panel should show - coordinates not set");
+        setShowLocationPanel(true);
+      } else {
+        console.log("Location panel should not show - coordinates are set");
+        setShowLocationPanel(false);
+      }
+    } else if (isLoggedIn && user) {
+      console.log("Location panel should show - no location object");
+      setShowLocationPanel(true);
+    }
+  }, [isLoggedIn, user]);
 
   const handleAddToCart = (product, quantity = 1) => {
     try {
@@ -44,6 +68,16 @@ const Home = () => {
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
+  };
+
+  const handleLocationUpdate = () => {
+    setShowLocationPanel(false);
+    // No need to refresh manually - AuthContext handles user state update
+  };
+
+  const handleCloseLocationPanel = () => {
+    setShowLocationPanel(false);
+    // You might want to remind user later or allow them to set it in profile
   };
 
   const banners = [
@@ -219,13 +253,11 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      <section className="foodcard">
+      <section className="foodcard mt-[70px] md:mt-[100px] container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
         <div className="mt-[50px] sm:mt-[70px] md:mt-[100px] container mx-auto px-4 sm:px-6 lg:px-8 my-4 flex flex-col items-center">
           <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl lg:text-4xl underline underline-offset-4 decoration-rose-600 decoration-4 font-bold text-center text-gray-900 mb-6">
             LATEST DISHES
           </h1>
-
           {loading ? (
             <div className="flex justify-center items-center py-10 sm:py-15 md:py-20">
               <div className="text-lg sm:text-xl text-gray-600">Loading latest dishes...</div>
@@ -256,10 +288,10 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="w-full h-48 md:h-52 overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
-                    <img 
-                      src={dish.image} 
-                      alt={dish.name} 
-                      className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" 
+                    <img
+                      src={dish.image}
+                      alt={dish.name}
+                      className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                   <h1 className="mt-4 text-gray-700 text-sm capitalize">{dish.category}</h1>
@@ -277,7 +309,6 @@ const Home = () => {
               ))}
             </div>
           )}
-
           <Link to="/menu">
             <button
               type="button"
@@ -288,8 +319,14 @@ const Home = () => {
           </Link>
         </div>
       </section>
+      {/* Location Panel */}
+      {showLocationPanel && (
+        <LocationPanel
+          onLocationUpdate={handleLocationUpdate}
+          onClose={handleCloseLocationPanel}
+        />
+      )}
     </div>
   );
 };
-
 export default Home;

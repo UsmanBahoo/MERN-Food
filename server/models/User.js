@@ -23,6 +23,37 @@ const userSchema = new mongoose.Schema({
     address: {
         type: String,
     },
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            default: 'Point'
+        },
+        coordinates: {
+            type: [Number], // [longitude, latitude]
+            default: [0, 0]
+        },
+        address: {
+            type: String,
+            default: ''
+        },
+        city: {
+            type: String,
+            default: ''
+        },
+        state: {
+            type: String,
+            default: ''
+        },
+        country: {
+            type: String,
+            default: ''
+        },
+        pincode: {
+            type: String,
+            default: ''
+        }
+    },
     status: {
         type: String,
         enum: ['active', 'inactive'],
@@ -49,6 +80,9 @@ const userSchema = new mongoose.Schema({
         }
     }]
 }, { timestamps: true });
+
+// Create geospatial index for location
+userSchema.index({ location: '2dsphere' });
 
 const User = mongoose.model("User", userSchema);
 export default User;

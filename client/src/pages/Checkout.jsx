@@ -154,7 +154,11 @@ const Checkout = () => {
 
           <hr />
 
-          {address && (
+
+
+
+
+          {address & (
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">ADDRESS</h3>
               <p className="text-gray-700">{address.flatNo}</p>

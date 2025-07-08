@@ -63,6 +63,23 @@ export const AuthProvider = ({children}) => {
         });
     };
 
+    const refreshUser = async () => {
+        try {
+            const storedUser = localStorage.getItem('FPAUTHUS');
+            if (storedUser && storedUser !== 'undefined') {
+                const userData = JSON.parse(storedUser);
+                // Fetch fresh user data from server
+                const response = await axios.get(`${API_BASE_URL}/api/user/${userData._id}`);
+                if (response.status === 200) {
+                    setUser(response.data.user);
+                    localStorage.setItem('FPAUTHUS', JSON.stringify(response.data.user));
+                }
+            }
+        } catch (error) {
+            console.error("Error refreshing user data:", error);
+        }
+    };
+
     useEffect(() => {
         const storedUser = localStorage.getItem('FPAUTHUS');
         if (storedUser && storedUser !== 'undefined') {
@@ -71,7 +88,7 @@ export const AuthProvider = ({children}) => {
         }
     }, []); 
 
-    const value = { user, register, login, logout, updateUser, isLoggedIn };
+    const value = { user, register, login, logout, updateUser, isLoggedIn, refreshUser };
 
     return (
         <AuthContext.Provider value={value}>
