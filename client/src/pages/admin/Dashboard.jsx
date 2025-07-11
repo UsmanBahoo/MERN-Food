@@ -44,10 +44,10 @@ function Dashboard() {
       // Process orders data - API returns array directly
       const orders = ordersResponse.data || [];
       const pendingOrders = orders.filter(order => 
-        order.status === 'pending' || order.orderStatus === 'Pending'
+        order.status === 'pending' || order.status === 'Pending'
       ).length;
       const completedOrders = orders.filter(order => 
-        order.status === 'delivered' || order.orderStatus === 'Delivered'
+        order.status === 'delivered' || order.status === 'Delivered'
       ).length;
 
       // Process feedbacks data

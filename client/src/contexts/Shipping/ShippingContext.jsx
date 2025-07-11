@@ -6,6 +6,8 @@ function ShippingProvider({ children }) {
   const [address, setAddress] = useState(() => getAddress());
   const [haveAddress, setHaveAddress] = useState(!!address);
 
+  console.log("ShippingProvider initialized with address:", address);
+
   async function saveAddress(address) {
     localStorage.setItem("FPSHIPUS", JSON.stringify(address));
     setAddress(address);

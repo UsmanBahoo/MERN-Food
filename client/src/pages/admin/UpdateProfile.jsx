@@ -165,7 +165,7 @@ function UpdateAdminProfile() {
                       name="name"
                       id="profile-name"
                       placeholder="Name"
-                      className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                      className="peer mt-1 w-full border-0 border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-b-2 focus:border-gray-500 focus:outline-none focus:ring-0"
                       value={profileData.name}
                       onChange={handleProfileChange}
                       required
@@ -181,7 +181,7 @@ function UpdateAdminProfile() {
                       name="email"
                       id="profile-email"
                       placeholder="Email Address"
-                      className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                      className="peer mt-1 w-full border-0 border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-b-2 focus:border-gray-500 focus:outline-none focus:ring-0"
                       value={profileData.email}
                       onChange={handleProfileChange}
                       required
@@ -197,7 +197,7 @@ function UpdateAdminProfile() {
                       name="currentPassword"
                       id="profile-current-password"
                       placeholder="Current Password"
-                      className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                      className="peer mt-1 w-full border-0 border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-b-2 focus:border-gray-500 focus:outline-none focus:ring-0"
                       value={profileData.currentPassword}
                       onChange={handleProfileChange}
                       required
@@ -236,8 +236,6 @@ function UpdateAdminProfile() {
               </div>
             </div>
           )}
-
-          {/* Password Update Section */}
           {activeSection === 'password' && (
             <div>
               <div className="text-center">
@@ -251,7 +249,7 @@ function UpdateAdminProfile() {
                       name="currentPassword"
                       id="password-current"
                       placeholder="Current Password"
-                      className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                      className="peer mt-1 w-full border-0 border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-b-2 focus:border-gray-500 focus:outline-none focus:ring-0"
                       value={passwordData.currentPassword}
                       onChange={handlePasswordChange}
                       required
@@ -267,7 +265,7 @@ function UpdateAdminProfile() {
                       name="newPassword"
                       id="password-new"
                       placeholder="New Password"
-                      className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                      className="peer mt-1 w-full border-0 border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-b-2 focus:border-gray-500 focus:outline-none focus:ring-0"
                       value={passwordData.newPassword}
                       onChange={handlePasswordChange}
                       required
@@ -283,7 +281,7 @@ function UpdateAdminProfile() {
                       name="confirmPassword"
                       id="password-confirm"
                       placeholder="Confirm New Password"
-                      className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                      className="peer mt-1 w-full border-0 border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-b-2 focus:border-gray-500 focus:outline-none focus:ring-0"
                       value={passwordData.confirmPassword}
                       onChange={handlePasswordChange}
                       required

@@ -8,7 +8,7 @@ const FeedbackController = {
             if (!name || !email || !phone || !feedback) {
                 return res.status(400).json({ message: 'All fields are required' });
             }
-            const newFeedback = new Feedback({ customerName: name, customerEmail:  email, subject: feedback });
+            const newFeedback = new Feedback({ customerName: name, customerEmail:  email, subject: feedback, phone: phone });
             await newFeedback.save();
             res.status(201).json({ message: 'Feedback created successfully', feedback: newFeedback });
         } catch (error) {
@@ -33,6 +33,7 @@ const FeedbackController = {
     async getAllFeedbacks(req, res) {
         try {
             const feedbacks = await Feedback.find().sort({ createdAt: -1 });
+            console.log('Fetched feedbacks:', feedbacks); // Log fetched feedbacks for debugging
             res.status(200).json({ feedbacks });
         } catch (error) {
             console.error('Error fetching feedbacks:', error);

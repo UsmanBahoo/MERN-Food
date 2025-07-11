@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom'
 
 const About = () => {  
   const cards = [
-    { id: 1, img: "Image/pic-1.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM" },
-    { id: 2, img: "Image/pic-2.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
-    { id: 3, img: "Image/pic-3.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM" },
-    { id: 4, img: "Image/pic-4.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
-    { id: 5, img: "Image/pic-5.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
-    { id: 6, img: "Image/pic-6.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "src/Svg/star-solid.svg", heading:"UM"  },
+    { id: 1, img: "Image/pic-1.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "/Svg/star-solid.svg", heading:"UM" },
+    { id: 2, img: "Image/pic-2.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "/Svg/star-solid.svg", heading:"UM"  },
+    { id: 3, img: "Image/pic-3.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "/Svg/star-solid.svg", heading:"UM" },
+    { id: 4, img: "Image/pic-4.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "/Svg/star-solid.svg", heading:"UM"  },
+    { id: 5, img: "Image/pic-5.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "/Svg/star-solid.svg", heading:"UM"  },
+    { id: 6, img: "Image/pic-6.png", paragraph: "If you choose us, we will provide you a best online service you can orderd your favourite food we will make sure that you have best experiance with us!", logo: "/Svg/star-solid.svg", heading:"UM"  },
   ];
   return (  
     <div>

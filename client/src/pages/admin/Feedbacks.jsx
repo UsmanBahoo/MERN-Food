@@ -4,6 +4,7 @@ import API_BASE_URL from '../../config/api';
 
 function Feedbacks() {
     const [feedbacks, setFeedbacks] = useState([]);
+    console.log("Feedback: ", feedbacks);
 
     useEffect(() => {
         fetchFeedbacks();
@@ -62,8 +63,10 @@ function Feedbacks() {
                             <FeedbackCard
                                 feedback={{
                                     ...feedback,
-                                    customerName: feedback.userId?.name || feedback.customerName,
-                                    customerEmail: feedback.userId?.email || feedback.customerEmail
+                                    name: feedback.userId?.name || feedback.customerName,
+                                    email: feedback.userId?.email || feedback.customerEmail,
+                                    phone: feedback.userId?.phone || feedback.phone,
+                                    subject: feedback.subject || feedback.message
                                 }}
                                 onDelete={() => handleDelete(feedback._id, index)}
                             />
@@ -82,7 +85,7 @@ function FeedbackCard({ feedback, onDelete }) {
             <p><span className="font-semibold text-black">name :</span> {feedback.name || 'N/A'}</p>
             <p><span className="font-semibold text-black">number :</span> {feedback.phone || 'N/A'}</p>
             <p><span className="font-semibold text-black">email :</span> {feedback.email || 'N/A'}</p>
-            <p><span className="font-semibold text-black">message :</span> {feedback.feedback}</p>
+            <p><span className="font-semibold text-black">message :</span> {feedback.subject}</p>
             <button className="bg-red-500 text-white font-semibold px-6 py-2 rounded hover:bg-red-600 w-full mt-2" onClick={onDelete}>
                 Delete
             </button>

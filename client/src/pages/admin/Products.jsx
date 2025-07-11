@@ -63,7 +63,7 @@ function Products() {
         formDataToSend.append('image', formData.image);
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/api/admin/products`, formDataToSend, {
+            const response = await axios.post(`${API_BASE_URL}/api/products`, formDataToSend, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             
@@ -85,7 +85,7 @@ function Products() {
     const handleDelete = async (productId) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
             try {
-                await axios.delete(`${API_BASE_URL}/api/admin/products/${productId}`);
+                await axios.delete(`${API_BASE_URL}/api/products/${productId}`);
                 showAlert("success", "Product deleted successfully!");
                 fetchProducts();
             } catch (error) {
