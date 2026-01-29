@@ -41,9 +41,8 @@ function Dashboard() {
         axios.get(`${API_BASE_URL}/api/feedbacks`)
       ]);
 
-      console.log('admin response', adminsResponse)
 
-      const admins = adminsResponse.data.length || 1;
+      const admins = adminsResponse.data.admins.length || 1;
       // Process orders data - API returns array directly
       const orders = ordersResponse.data || [];
       const pendingOrders = orders.filter(order => 
