@@ -41,6 +41,7 @@ function Dashboard() {
         axios.get(`${API_BASE_URL}/api/feedbacks`)
       ]);
 
+      const admins = adminResponse.data || 1;
       // Process orders data - API returns array directly
       const orders = ordersResponse.data || [];
       const pendingOrders = orders.filter(order => 
@@ -58,7 +59,7 @@ function Dashboard() {
 
       // Update cards data with real values
       const updatedCards = [
-        { id: 1, value: 1, label: "admin", buttonText: "Update Profile", link: "/admin/profile" },
+        { id: 1, value: admins, label: "admin", buttonText: "Update Profile", link: "/admin/profile" },
         { id: 2, value: pendingOrders, label: "total pendings", buttonText: "See Orders", link: "/admin/orders" },
         { id: 3, value: completedOrders, label: "total completes", buttonText: "See Orders", link: "/admin/orders" },
         { id: 4, value: orders.length, label: "total orders", buttonText: "See Orders", link: "/admin/orders" },
