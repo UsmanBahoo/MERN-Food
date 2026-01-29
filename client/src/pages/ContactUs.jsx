@@ -42,7 +42,7 @@ const ContactUs = () => {
     }
 
     setSubmitStatus({ loading: true, success: null, error: null });
-
+    console.log("submitted feedback")
     try {
       console.log(formData);
       await axios.post('http://localhost:5000/api/feedback', formData)
